@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+:root {
+  /* foreground */
+  --foreground-primary: #111624;
+  /* background */
+  --background-primary: #F7F7FA;
+  --background-secondary: #E2E4EB;
+  /* primary */
+  --blue-primary: #459EE3;
+  --pink-primary: #FF66B2;
+  --orange-primary: #FFA559;
+  --green-primary: #62C370;
+  /* secondary */
+  /* tertiary */
+}

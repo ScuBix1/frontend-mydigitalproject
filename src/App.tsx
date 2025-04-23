@@ -1,5 +1,7 @@
+import Loading from './pages/Loading/Loading';
+
 function App() {
-  return <div></div>;
+  return <Loading />;
 }
 
 export default App;
