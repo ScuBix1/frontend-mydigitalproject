@@ -1,3 +1,4 @@
+import Button from '../../components/Button/Button';
 import InputText from '../../components/InputText/InputText';
 
 const Signup = () => {
@@ -32,6 +33,7 @@ const Signup = () => {
             placeholder='Taper votre date de naissance ...'
           />
         </form>
+        <Button variant='primary'>commencer</Button>
       </div>
       <img src='/assets/images/signup-illustration.png' className='w-[300px]' />
     </div>
