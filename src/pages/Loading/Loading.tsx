@@ -56,7 +56,7 @@ const Loading = () => {
       <img
         src='/assets/images/illustration.png'
         alt='illustration'
-        className='min-w-[185px] h-[185px] w-[185px] sm:absolute sm:bottom-[10px] sm:right-[10px] sm:z-[99999] sm:min-w-[130px] sm:w-[130px] sm:h-[130px] md:right-[60px] lg:w-[190px] lg:h-[190px] xl:w-[250px] xl:h-[250px] 2xl:w-[310px] 2xl:h-[310px] '
+        className='min-w-[185px] h-[185px] w-[185px] md:absolute md:bottom-[10px] md:right-[60px] lg:w-[190px] lg:h-[190px] xl:w-[250px] xl:h-[250px] 2xl:w-[310px] 2xl:h-[310px] '
       />
     </div>
   );

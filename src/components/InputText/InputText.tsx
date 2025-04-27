@@ -16,7 +16,7 @@ const InputText = (props: InputTextProps) => {
       <input
         type='text'
         id={id}
-        className='border border-[var(--foreground-primary)] max-w-[230px] h-[50px] rounded-[20px] px-[10px]'
+        className='border border-[var(--foreground-primary)] max-w-[230px] h-[50px] rounded-[20px] px-[10px] bg-[var(--background-secondary-light)]'
         placeholder={placeholder}
       />
     </div>
