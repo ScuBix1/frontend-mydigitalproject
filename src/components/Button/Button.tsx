@@ -1,7 +1,7 @@
 import { tv } from 'tailwind-variants';
 
 const buttonVariant = tv({
-  base: 'rounded-[20px] px-8 py-2',
+  base: 'rounded-[20px] px-8 py-2 cursor-pointer',
   variants: {
     variant: {
       primary: 'bg-[var(--orange-primary)] text-[var(--foreground-secondary)]',

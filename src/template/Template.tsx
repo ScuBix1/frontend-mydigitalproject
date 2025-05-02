@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { Outlet } from 'react-router-dom';
-import Wave from '../../assets/icons/Wave';
+import Wave from '../assets/icons/Wave';
 
 interface TemplateProps {
   className?: string;
