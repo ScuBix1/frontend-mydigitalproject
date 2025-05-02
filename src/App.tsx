@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
-import Template from './components/Template/Template';
 import Loading from './pages/Loading/Loading';
 import Signin from './pages/Signin/Signin';
 import Signup from './pages/Signup/Signup';
+import Template from './template/Template';
 
 function App() {
   return (
