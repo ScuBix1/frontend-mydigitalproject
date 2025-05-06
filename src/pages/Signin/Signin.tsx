@@ -8,7 +8,7 @@ const Signin = () => {
       <div className='min-h-[100dvh] flex flex-col justify-center items-center lg:flex-row lg:justify-around'>
         <div className='flex flex-col gap-y-4 justify-center items-center'>
           <h1 className='text-h1'>Se connecter</h1>
-          <form action='' className='flex flex-col gap-y-4'>
+          <form action='' className='flex flex-col gap-y-4 mx-auto'>
             <InputText id='email' textLabel='E-mail' placeholder='E-mail...' />
             <InputText
               id='password'
