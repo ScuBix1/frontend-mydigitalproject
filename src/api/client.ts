@@ -69,7 +69,7 @@ export async function httpRequest<TResponse = unknown, TRequest = unknown>(
       return {
         ok: false,
         error: {
-          message: 'Erreur API',
+          message: (responseData.message as string) || "Erreur de l'api",
           status: response.status,
           body: responseData,
         },

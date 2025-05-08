@@ -1,3 +1,4 @@
+import { Slot } from '@radix-ui/react-slot';
 import { tv } from 'tailwind-variants';
 
 const buttonVariant = tv({
@@ -15,15 +16,17 @@ const buttonVariant = tv({
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   variant?: 'primary';
+  asChild?: boolean;
 }
 
 const Button = (props: ButtonProps) => {
-  const { className, children, variant, ...propsButton } = props;
+  const { className, children, variant, asChild = false, ...rest } = props;
+  const Comp = asChild ? Slot : 'button';
 
   return (
-    <button className={buttonVariant({ variant, className })} {...propsButton}>
+    <Comp className={buttonVariant({ variant, className })} {...rest}>
       {children}
-    </button>
+    </Comp>
   );
 };
 

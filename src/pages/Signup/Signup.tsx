@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { SignupTutorDto, signupSchema } from '../../api/tutor/signup/schema';
 import { useSignupTutor } from '../../api/tutor/signup/useSignupTutor';
 import Button from '../../components/Button/Button';
@@ -13,12 +14,15 @@ const Signup = () => {
   } = useForm<SignupTutorDto>({
     resolver: zodResolver(signupSchema),
   });
+  const navigate = useNavigate();
 
-  const { mutate, isPending, isError } = useSignupTutor();
+  const { mutate, isPending, isError, error } = useSignupTutor();
 
-  const onSubmit = (data: SignupTutorDto) => {
-    console.log(data);
+  const onSubmit = async (data: SignupTutorDto) => {
     mutate(data);
+    if (!isPending && !isError) {
+      navigate('/');
+    }
   };
 
   return (
@@ -66,13 +70,13 @@ const Signup = () => {
               error={errors.dob?.message}
             />
 
-            <div className='h-2 text-red-500'>
-              {isError && 'Une erreur est survenue'}
+            <div className='h-2 text-red-500 basis-full'>
+              {isError && error.message}
             </div>
             <div className='basis-full'>
               <Button
                 variant='primary'
-                className='mt-4 lg:mt-10'
+                className='mt-4 lg:mt-10 no-underline'
                 type='submit'
                 disabled={isPending}
               >
@@ -85,23 +89,6 @@ const Signup = () => {
           src='/assets/images/signup-illustration.png'
           className='w-[243px] lg:w-[300px] mt-10 '
         />
-      </div>
-      <div className='hidden bottom-5 lg:block text-center text-[var(--foreground-secondary)]'>
-        <h2 className='font-bold text-tag'>
-          Essayez gratuitement pendant 7 jours !
-        </h2>
-        <p className='flex flex-col'>
-          <span>
-            Découvrez tout le potentiel de notre plateforme sans engagement.
-          </span>
-          <span>
-            Profitez d’un accès complet aux ressources et jeux éducatifs.
-          </span>
-          <span>
-            👉 Après la période d’essai, continuez l’aventure pour 9,99 €/mois
-            (annulable à tout moment).
-          </span>
-        </p>
       </div>
     </div>
   );

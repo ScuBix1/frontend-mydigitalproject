@@ -1,3 +1,4 @@
+import { Slot } from '@radix-ui/react-slot';
 import { PropsWithChildren } from 'react';
 import { tv } from 'tailwind-variants';
 
@@ -17,6 +18,7 @@ interface LinkProps
   variant?: 'primary';
   href: string;
   isNewTarget?: boolean;
+  asChild?: boolean;
 }
 
 const Link = (props: LinkProps) => {
@@ -25,19 +27,18 @@ const Link = (props: LinkProps) => {
     variant,
     href,
     isNewTarget = false,
+    asChild = false,
     children,
     ...propsLink
   } = props;
+  const Comp = asChild ? Slot : 'a';
+  const target = isNewTarget ? '_blank' : '_self';
+  const finalClassName = linkVariant({ variant, className });
 
   return (
-    <a
-      className={linkVariant({ variant, className })}
-      href={href}
-      target={isNewTarget ? '_blank' : '_self'}
-      {...propsLink}
-    >
+    <Comp className={finalClassName} href={href} target={target} {...propsLink}>
       {children}
-    </a>
+    </Comp>
   );
 };
 
