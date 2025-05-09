@@ -9,7 +9,7 @@ export const useSignupTutor = () => {
   return useMutation({
     mutationFn: (data: SignupTutorDto) => signupTutor(data),
     onSuccess: () => {
-      navigate('/');
+      navigate('/email-verification');
     },
   });
 };

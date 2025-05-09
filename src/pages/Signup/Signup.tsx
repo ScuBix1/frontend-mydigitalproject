@@ -1,6 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import { SignupTutorDto, signupSchema } from '../../api/tutor/signup/schema';
 import { useSignupTutor } from '../../api/tutor/signup/useSignupTutor';
 import Button from '../../components/Button/Button';
@@ -14,20 +13,16 @@ const Signup = () => {
   } = useForm<SignupTutorDto>({
     resolver: zodResolver(signupSchema),
   });
-  const navigate = useNavigate();
 
   const { mutate, isPending, isError, error } = useSignupTutor();
 
   const onSubmit = async (data: SignupTutorDto) => {
     mutate(data);
-    if (!isPending && !isError) {
-      navigate('/');
-    }
   };
 
   return (
     <div className='relative flex flex-col items-center justify-around gap-x-20 min-h-[100dvh]'>
-      <div className=' flex flex-col items-center justify-around gap-x-20 min-h-[80dvh] lg:flex-row'>
+      <div className=' flex flex-col items-center justify-around gap-x-20 w-full min-h-[80dvh] lg:flex-row'>
         <div className='flex flex-col items-center'>
           <h1 className='text-center text-h1 mb-3'>Inscription</h1>
           <form
@@ -87,7 +82,7 @@ const Signup = () => {
         </div>
         <img
           src='/assets/images/signup-illustration.png'
-          className='w-[243px] lg:w-[300px] mt-10 '
+          className='w-[243px] lg:w-[350px] xl:w-[450px] 2xl:w-[600px] mt-10 '
         />
       </div>
     </div>
