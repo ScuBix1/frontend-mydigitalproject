@@ -14,10 +14,14 @@ const Signup = () => {
     resolver: zodResolver(signupSchema),
   });
 
-  const { mutate, isPending, isError, error } = useSignupTutor();
+  const {
+    mutate: tutorMutate,
+    isPending,
+    error: tutorError,
+  } = useSignupTutor();
 
   const onSubmit = async (data: SignupTutorDto) => {
-    mutate(data);
+    tutorMutate(data);
   };
 
   return (
@@ -65,9 +69,11 @@ const Signup = () => {
               error={errors.dob?.message}
             />
 
-            <div className='h-2 text-red-500 basis-full'>
-              {isError && error.message}
-            </div>
+            {tutorError && (
+              <span className='h-2 text-red-500 basis-full'>
+                {tutorError.message}
+              </span>
+            )}
             <div className='basis-full'>
               <Button
                 variant='primary'

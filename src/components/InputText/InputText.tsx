@@ -25,7 +25,7 @@ const InputText = (props: InputTextProps) => {
   return (
     <div className={clsx('flex flex-col gap-y-3', className)}>
       {textLabel && <label htmlFor={id}>{textLabel}</label>}
-      <div className='relative w-[230px] h-[100px]'>
+      <div className='relative w-[230px] h-[85px]'>
         <input
           type='text'
           id={id}
@@ -36,9 +36,9 @@ const InputText = (props: InputTextProps) => {
           {...restProps}
         />
         {error && (
-          <p className='text-red-500 text-[0.7rem] italic absolute bottom-0'>
+          <span className='flex text-red-500 text-[0.7rem] italic absolute bottom-0 translate-x-1/18 leading-[11px]'>
             {error}
-          </p>
+          </span>
         )}
       </div>
     </div>
