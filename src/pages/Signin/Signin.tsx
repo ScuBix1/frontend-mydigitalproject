@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { SigninTutorDto, signinSchema } from '../../api/tutor/signin/schema';
 import { useSigninTutor } from '../../api/tutor/signin/useSigninTutor';
 import Button from '../../components/Button/Button';
-import InputText from '../../components/InputText/InputText';
+import Input from '../../components/Input/Input';
 import Link from '../../components/Link/Link';
 
 const Signin = () => {
@@ -27,17 +27,18 @@ const Signin = () => {
           <h1 className='text-h1'>Se connecter</h1>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className='flex flex-col gap-y-4 mx-auto'
+            className='flex flex-col gap-y-4 mx-auto items-center'
           >
-            <InputText
+            <Input
               id='email'
               textLabel='E-mail'
               placeholder='E-mail...'
               {...register('email')}
               error={errors.email?.message}
             />
-            <InputText
+            <Input
               id='password'
+              type='password'
               textLabel='Mot de passe'
               placeholder='Mot de passe...'
               {...register('password')}

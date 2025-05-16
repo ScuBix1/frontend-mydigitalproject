@@ -7,7 +7,7 @@ import {
 } from '../../api/tutor/email/verification/schema';
 import { useEmailVerification } from '../../api/tutor/email/verification/useEmailVerification';
 import Button from '../../components/Button/Button';
-import InputText from '../../components/InputText/InputText';
+import Input from '../../components/Input/Input';
 
 interface EmailVerificationProps {
   className?: string;
@@ -43,7 +43,7 @@ const EmailVerification = (props: EmailVerificationProps) => {
         onSubmit={handleSubmit(onSubmit)}
         className='flex flex-col items-center justify-center gap-5'
       >
-        <InputText
+        <Input
           id='otp'
           {...register('otp')}
           placeholder='111222'

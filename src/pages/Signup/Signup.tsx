@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { SignupTutorDto, signupSchema } from '../../api/tutor/signup/schema';
 import { useSignupTutor } from '../../api/tutor/signup/useSignupTutor';
 import Button from '../../components/Button/Button';
-import InputText from '../../components/InputText/InputText';
+import Input from '../../components/Input/Input';
 
 const Signup = () => {
   const {
@@ -31,37 +31,38 @@ const Signup = () => {
           <h1 className='text-center text-h1 mb-3'>Inscription</h1>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className='flex flex-col gap-4 lg:flex-row lg:flex-wrap lg:max-w-[512px]'
+            className='flex flex-col items-center gap-4 lg:flex-row lg:flex-wrap lg:max-w-[512px]'
           >
-            <InputText
+            <Input
               id='lastname'
               textLabel='Nom'
               placeholder='nom ...'
               {...register('lastname')}
               error={errors.lastname?.message}
             />
-            <InputText
+            <Input
               id='firstname'
               textLabel='Prénom'
               placeholder='prénom ...'
               {...register('firstname')}
               error={errors.firstname?.message}
             />
-            <InputText
+            <Input
               id='email'
               textLabel='Email'
               placeholder='email ...'
               {...register('email')}
               error={errors.email?.message}
             />
-            <InputText
+            <Input
               id='password'
+              type='password'
               textLabel='Mot de passe'
               placeholder='mot de passe ...'
               {...register('password')}
               error={errors.password?.message}
             />
-            <InputText
+            <Input
               id='dob'
               textLabel='Date de naissance'
               placeholder='dd/mm/AAAA'

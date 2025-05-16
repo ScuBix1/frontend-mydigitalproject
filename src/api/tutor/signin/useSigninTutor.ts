@@ -1,5 +1,5 @@
+import { useAuth } from '@/context/auth/AuthContext';
 import { useMutation } from '@tanstack/react-query';
-import { useAuth } from '../../../context/auth/useAuth';
 import { signinTutor } from './api';
 import { SigninTutorDto } from './schema';
 
