@@ -65,6 +65,8 @@ export async function httpRequest<TResponse = unknown, TRequest = unknown>(
       ? await response.json().catch(() => undefined)
       : undefined;
 
+    console.log(response);
+
     if (!response.ok) {
       return {
         ok: false,

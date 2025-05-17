@@ -1,5 +1,5 @@
+import ProgressBar from '@/components/ProgressBar/ProgressBar';
 import { useEffect, useState } from 'react';
-import ProgressBar from '../../components/ProgressBar/ProgressBar';
 
 const Loading = () => {
   const [imagesCompleted, setImagesCompleted] = useState(false);
