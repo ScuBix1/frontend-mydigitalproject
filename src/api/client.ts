@@ -50,6 +50,7 @@ export async function httpRequest<TResponse = unknown, TRequest = unknown>(
       'Content-Type': 'application/json',
       ...headers,
     },
+
     credentials: 'include',
     signal: fetchSignal,
     body: data ? JSON.stringify(data) : undefined,
@@ -64,8 +65,6 @@ export async function httpRequest<TResponse = unknown, TRequest = unknown>(
     const responseData = isJson
       ? await response.json().catch(() => undefined)
       : undefined;
-
-    console.log(response);
 
     if (!response.ok) {
       return {

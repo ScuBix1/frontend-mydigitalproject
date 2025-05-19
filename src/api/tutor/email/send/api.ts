@@ -2,7 +2,9 @@ import { httpRequest } from '../../../client';
 import { SendEmailDto } from './schema';
 
 const sendEmail = async (data: SendEmailDto) => {
-  const response = await httpRequest<{ message: string }>({
+  const response = await httpRequest<{
+    message: string;
+  }>({
     url: `${import.meta.env.VITE_API_URL}/tutors/verification-otp`,
     method: 'POST',
     data: {

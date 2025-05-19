@@ -1,6 +1,8 @@
+import useSendEmail from '@/api/tutor/email/send/useSendEmail';
 import { zodResolver } from '@hookform/resolvers/zod';
 import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
+import { Navigate, useLocation } from 'react-router-dom';
 import {
   EmailVerificationDto,
   emailVerificationSchema,
@@ -22,7 +24,17 @@ const EmailVerification = (props: EmailVerificationProps) => {
   } = useForm<EmailVerificationDto>({
     resolver: zodResolver(emailVerificationSchema),
   });
+  const email = useLocation().state?.email;
   const { mutate, error } = useEmailVerification();
+  const { mutate: emailMutate } = useSendEmail();
+
+  const handleResendEmail = () => {
+    if (!email) {
+      return <Navigate to='/signup' replace />;
+    }
+
+    emailMutate({ email });
+  };
 
   const onSubmit = (data: EmailVerificationDto) => {
     mutate(data);
@@ -52,6 +64,9 @@ const EmailVerification = (props: EmailVerificationProps) => {
         {error && (
           <span className='h-2 text-red-500 basis-full'>{error.message}</span>
         )}
+        <Button onClick={handleResendEmail} type='button'>
+          Renvoyer le code
+        </Button>
         <Button variant='primary' type='submit'>
           Vérifier l'email
         </Button>
