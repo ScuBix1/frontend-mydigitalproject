@@ -4,13 +4,13 @@ import signupStudent from './api';
 import { SignupStudentDto } from './shema';
 
 const useSignupStudent = () => {
-  const { token, user } = useAuth();
+  const { user, token } = useAuth();
 
   return useMutation({
-    mutationFn: (data: SignupStudentDto) =>
-      signupStudent(
+    mutationFn: async (data: SignupStudentDto) =>
+      await signupStudent(
         { ...data, tutor_id: user ? user.id : undefined },
-        token ?? undefined
+        token
       ),
   });
 };

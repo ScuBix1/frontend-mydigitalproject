@@ -7,6 +7,7 @@ const buttonVariant = tv({
     variant: {
       primary: 'bg-[var(--orange-primary)] text-[var(--foreground-secondary)]',
       icon: 'bg-transparent',
+      link: 'bg-transparent underline',
     },
   },
   defaultVariants: {
@@ -16,7 +17,7 @@ const buttonVariant = tv({
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
-  variant?: 'primary' | 'icon';
+  variant?: 'primary' | 'icon' | 'link';
   asChild?: boolean;
 }
 

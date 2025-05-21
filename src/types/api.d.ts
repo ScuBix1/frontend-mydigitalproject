@@ -149,7 +149,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/tutors/verify/{otp}": {
+    "/tutors/verify": {
         parameters: {
             query?: never;
             header?: never;
@@ -165,14 +165,14 @@ export interface paths {
         patch: operations["TutorsController_verifyEmail"];
         trace?: never;
     };
-    "/tutors/test": {
+    "/tutors/{tutorId}/students": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get: operations["TutorsController_fetchAllTutors"];
+        get: operations["TutorsController_getStudentsByTutor"];
         put?: never;
         post?: never;
         delete?: never;
@@ -238,7 +238,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["StudentsController_findAllStudentsByTutor"];
+        get?: never;
         put?: never;
         post?: never;
         delete: operations["StudentsController_remove"];
@@ -434,6 +434,7 @@ export interface components {
             admin_id: components["schemas"]["Admin"];
         };
         VerifyEmailDto: Record<string, never>;
+        Student: Record<string, never>;
         CreateAdminDto: {
             /**
              * @description Autorisation pour modifier les tuteurs
@@ -774,9 +775,7 @@ export interface operations {
         parameters: {
             query?: never;
             header?: never;
-            path: {
-                otp: string;
-            };
+            path?: never;
             cookie?: never;
         };
         requestBody: {
@@ -793,20 +792,25 @@ export interface operations {
             };
         };
     };
-    TutorsController_fetchAllTutors: {
+    TutorsController_getStudentsByTutor: {
         parameters: {
             query?: never;
             header?: never;
-            path?: never;
+            path: {
+                tutorId: number;
+            };
             cookie?: never;
         };
         requestBody?: never;
         responses: {
+            /** @description Liste des étudiants du tuteur */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["Student"][];
+                };
             };
         };
     };
@@ -870,25 +874,6 @@ export interface operations {
             query?: never;
             header?: never;
             path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    StudentsController_findAllStudentsByTutor: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
             cookie?: never;
         };
         requestBody?: never;

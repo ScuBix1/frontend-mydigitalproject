@@ -1,5 +1,7 @@
+import DateInput from '@/components/DateInput/DateInput';
+import formatDateToISO from '@/lib/formatDateToISO';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { SignupTutorDto, signupSchema } from '../../api/tutor/signup/schema';
 import { useSignupTutor } from '../../api/tutor/signup/useSignupTutor';
 import Button from '../../components/Button/Button';
@@ -10,6 +12,7 @@ const Signup = () => {
     register,
     handleSubmit,
     formState: { errors },
+    control,
   } = useForm<SignupTutorDto>({
     resolver: zodResolver(signupSchema),
   });
@@ -21,7 +24,9 @@ const Signup = () => {
   } = useSignupTutor();
 
   const onSubmit = async (data: SignupTutorDto) => {
-    tutorMutate(data);
+    const isoDate = formatDateToISO(data.dob);
+    console.log(isoDate);
+    tutorMutate({ ...data, dob: isoDate });
   };
 
   return (
@@ -62,12 +67,18 @@ const Signup = () => {
               {...register('password')}
               error={errors.password?.message}
             />
-            <Input
-              id='dob'
-              textLabel='Date de naissance'
-              placeholder='dd/mm/AAAA'
-              {...register('dob')}
-              error={errors.dob?.message}
+            <Controller
+              name='dob'
+              control={control}
+              render={({ field }) => (
+                <DateInput
+                  id='dob'
+                  label='Date de naissance'
+                  value={field.value}
+                  onChange={field.onChange}
+                  error={errors.dob?.message}
+                />
+              )}
             />
 
             {tutorError && (

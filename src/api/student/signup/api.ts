@@ -5,10 +5,10 @@ const signupStudent = async (data: SignupStudentDto, token?: string) => {
   const response = await httpRequest<{ message: string }>({
     url: `${import.meta.env.VITE_API_URL}/students/sign-up`,
     method: 'POST',
-    headers: token ? { Authorization: `Bearer ${token}` } : {},
     data: {
       ...data,
     },
+    token: token,
   });
 
   if (!token) {

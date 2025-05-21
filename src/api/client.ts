@@ -7,6 +7,7 @@ interface HttpRequestOptions<T = unknown> {
   headers?: Record<string, string>;
   signal?: AbortSignal;
   timeOutMs?: number;
+  token?: string;
 }
 
 export interface HttpError {
@@ -37,6 +38,7 @@ export async function httpRequest<TResponse = unknown, TRequest = unknown>(
     headers,
     signal,
     timeOutMs = 10000,
+    token,
   } = options;
 
   const controller = new AbortController();
@@ -48,6 +50,7 @@ export async function httpRequest<TResponse = unknown, TRequest = unknown>(
     method,
     headers: {
       'Content-Type': 'application/json',
+      ...(token && { Authorization: `Bearer ${token}` }),
       ...headers,
     },
 

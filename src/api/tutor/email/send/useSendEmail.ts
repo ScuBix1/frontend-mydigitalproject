@@ -4,7 +4,7 @@ import { SendEmailDto } from './schema';
 
 const useSendEmail = () => {
   return useMutation({
-    mutationFn: (data: SendEmailDto) => sendEmail(data),
+    mutationFn: async (data: SendEmailDto) => await sendEmail(data),
   });
 };
 

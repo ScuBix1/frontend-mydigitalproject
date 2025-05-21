@@ -7,7 +7,8 @@ export const useEmailVerification = () => {
   const { login } = useAuth();
 
   return useMutation({
-    mutationFn: (data: EmailVerificationDto) => emailVerificationTutor(data),
+    mutationFn: async (data: EmailVerificationDto) =>
+      await emailVerificationTutor(data),
     onSuccess: (data) => {
       if ('access_token' in data) {
         login(data.access_token);

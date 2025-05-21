@@ -44,8 +44,7 @@ const Input = (props: InputProps) => {
             type={isPassword ? inputType : type}
             id={id}
             className={clsx(
-              'border border-[var(--foreground-primary)] max-w-[230px] h-[50px] rounded-[20px] px-[10px] bg-[var(--background-secondary-light)] mb-[2rem] overflow-hidden',
-              { 'pr-[50px]': isPassword }
+              'border border-[var(--foreground-primary)] max-w-[230px] h-[50px] rounded-[20px] px-[10px] bg-[var(--background-secondary-light)] mb-[2rem] overflow-hidden pr-[50px]'
             )}
             placeholder={placeholder}
             value={value}
