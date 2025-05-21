@@ -12,7 +12,7 @@ export const useSignupTutor = () => {
     mutationFn: (data: SignupTutorDto) => signupTutor(data),
     onSuccess: (data, variables) => {
       emailMutate({ email: variables.email });
-      navigate('/email-verification');
+      navigate('/email-verification', { state: { email: variables.email } });
     },
   });
 };

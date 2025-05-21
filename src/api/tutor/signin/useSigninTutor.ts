@@ -7,7 +7,7 @@ export const useSigninTutor = () => {
   const { login } = useAuth();
 
   return useMutation({
-    mutationFn: (data: SigninTutorDto) => signinTutor(data),
+    mutationFn: async (data: SigninTutorDto) => await signinTutor(data),
     onSuccess: (data) => {
       if ('access_token' in data) {
         login(data.access_token);
