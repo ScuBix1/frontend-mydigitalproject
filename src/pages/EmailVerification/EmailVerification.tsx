@@ -1,4 +1,5 @@
 import useSendEmail from '@/api/tutor/email/send/useSendEmail';
+import { useAuth } from '@/context/auth/AuthContext';
 import { zodResolver } from '@hookform/resolvers/zod';
 import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
@@ -24,7 +25,8 @@ const EmailVerification = (props: EmailVerificationProps) => {
   } = useForm<EmailVerificationDto>({
     resolver: zodResolver(emailVerificationSchema),
   });
-  const email = useLocation().state?.email;
+  const { user } = useAuth();
+  const email = useLocation().state?.email ?? user?.username;
   const { mutate, error } = useEmailVerification();
   const { mutate: emailMutate } = useSendEmail();
   const navigate = useNavigate();
@@ -34,7 +36,7 @@ const EmailVerification = (props: EmailVerificationProps) => {
       navigate('/signin', { replace: true });
       return;
     }
-    emailMutate({ email });
+    emailMutate({ email: email });
   };
 
   const onSubmit = (data: EmailVerificationDto) => {

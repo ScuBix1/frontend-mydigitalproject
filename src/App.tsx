@@ -15,9 +15,9 @@ function App() {
         <Route path='/signup' element={<Signup />} />
         <Route path='/signin' element={<Signin />} />
         <Route path='/email-verification' element={<EmailVerification />} />
-        <Route path={'/tutor'} element={<PrivateRoute />}>
-          <Route path='dashboard' element={<Dashboard />} />
-        </Route>
+      </Route>
+      <Route path='/tutor' element={<PrivateRoute />}>
+        <Route path='dashboard' element={<Dashboard />} />
       </Route>
     </Routes>
   );

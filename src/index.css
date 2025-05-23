@@ -25,6 +25,9 @@
 }
 
 :root {
+  /* curious blue */
+  --curious-blue-800: #144878;
+
   /* foreground */
   --foreground-primary: #111624;
   --foreground-secondary: #FFFFFF;
