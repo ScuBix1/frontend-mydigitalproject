@@ -11,7 +11,7 @@ const Header = (props: HeaderProps) => {
   return (
     <div
       className={cn(
-        'w-full min-h-[80px] bg-[var(--curious-blue-800)] rounded-b-[20%]',
+        'w-full min-h-[80px] bg-[var(--curious-blue-800)] rounded-b-[20%] mb-20 sticky top-0',
         className
       )}
     >

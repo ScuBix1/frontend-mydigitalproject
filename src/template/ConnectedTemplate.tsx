@@ -12,7 +12,7 @@ const ConnectedTemplate = (props: ConnectedTemplateProps) => {
   return (
     <div className={clsx('min-h-screen flex flex-col', className)}>
       <Header>{headerContent}</Header>
-      <main>{children}</main>
+      <main className='px-3'>{children}</main>
     </div>
   );
 };

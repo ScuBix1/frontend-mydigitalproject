@@ -7,6 +7,9 @@ import useStudents from '@/api/tutor/students/getStudents/useStudents';
 import Button from '@/components/Button/Button';
 import CustomSelect from '@/components/CustomSelect/CustomSelect';
 import Input from '@/components/Input/Input';
+import Panel from '@/components/Panel/Panel';
+import ProgressBar from '@/components/ProgressBar/ProgressBar';
+import StudentProgressionCard from '@/components/StudentProgressionCard/StudentProgressionCard';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 import ConnectedTemplate from '../../template/ConnectedTemplate';
@@ -117,14 +120,67 @@ const Dashboard = () => {
           />
         </div>
       ) : (
-        <div>
-          {students.map((student, index) => {
-            return (
-              <div key={`student-${index}`}>
-                {`${student.firstname} ${student.lastname}`}
-              </div>
-            );
-          })}
+        <div className='flex flex-col items-center gap-y-6 lg:flex-row lg:items-start lg:justify-around'>
+          <Panel
+            title={
+              <>
+                <h2>Top Performance</h2>
+                <h2>Performance élèves en(%)</h2>
+              </>
+            }
+            className='h-[100%]'
+          >
+            {students.map(
+              (student, index) =>
+                index < 3 && (
+                  <div
+                    className='flex gap-9 items-center'
+                    key={`student-progression-${index}`}
+                  >
+                    <div className='basis-1/3 flex flex-wrap items-center justify-center sm:justify-start gap-2'>
+                      <div className='w-[25px] h-[25px] bg-[var(--blue-primary)]'></div>
+                      <div>{student.firstname}</div>
+                    </div>
+                    <div className='basis-2/3'>
+                      <ProgressBar variant='student' progress={80} />
+                    </div>
+                  </div>
+                )
+            )}
+          </Panel>
+          <Panel
+            title={
+              <>
+                <h2>Résultats Avatars</h2>
+              </>
+            }
+          >
+            {students.map(
+              (student, index) =>
+                index < 3 && (
+                  <div
+                    className='flex flex-col items-center gap-9 md:flex-row md:flex-wrap'
+                    key={`student-progression-card-${index}`}
+                  >
+                    <StudentProgressionCard
+                      color='var(--green-primary)'
+                      firstname={student.firstname}
+                      progress={80}
+                    />
+                    <StudentProgressionCard
+                      color='var(--green-primary)'
+                      firstname={student.firstname}
+                      progress={80}
+                    />
+                    <StudentProgressionCard
+                      color='var(--green-primary)'
+                      firstname={student.firstname}
+                      progress={80}
+                    />
+                  </div>
+                )
+            )}
+          </Panel>
         </div>
       )}
     </ConnectedTemplate>
