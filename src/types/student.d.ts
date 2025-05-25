@@ -6,4 +6,5 @@ export interface Student {
   start_hour?: string;
   duration?: number;
   grade: string;
+  avatar: string;
 }

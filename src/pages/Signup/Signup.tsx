@@ -25,7 +25,6 @@ const Signup = () => {
 
   const onSubmit = async (data: SignupTutorDto) => {
     const isoDate = formatDateToISO(data.dob);
-    console.log(isoDate);
     tutorMutate({ ...data, dob: isoDate });
   };
 

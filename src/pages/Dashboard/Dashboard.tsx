@@ -10,6 +10,7 @@ import Input from '@/components/Input/Input';
 import Panel from '@/components/Panel/Panel';
 import ProgressBar from '@/components/ProgressBar/ProgressBar';
 import StudentProgressionCard from '@/components/StudentProgressionCard/StudentProgressionCard';
+import { getColorAvatar } from '@/lib/getColorAvatar';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 import ConnectedTemplate from '../../template/ConnectedTemplate';
@@ -43,7 +44,7 @@ const Dashboard = () => {
   return (
     <ConnectedTemplate>
       {students === undefined || (students && students.length === 0) ? (
-        <div className='flex flex-col min-h-[100dvh] items-center justify-around lg:flex-row'>
+        <div className='flex flex-col items-center justify-around lg:flex-row'>
           <div className='flex flex-col items-center gap-6'>
             <h1 className='text-h1 text-center'>
               Bienvenue sur Math & Magique !
@@ -120,7 +121,7 @@ const Dashboard = () => {
           />
         </div>
       ) : (
-        <div className='flex flex-col items-center gap-y-6 lg:flex-row lg:items-start lg:justify-around'>
+        <div className='flex flex-col items-center gap-6 lg:flex-row lg:items-start lg:justify-around'>
           <Panel
             title={
               <>
@@ -138,7 +139,12 @@ const Dashboard = () => {
                     key={`student-progression-${index}`}
                   >
                     <div className='basis-1/3 flex flex-wrap items-center justify-center sm:justify-start gap-2'>
-                      <div className='w-[25px] h-[25px] bg-[var(--blue-primary)]'></div>
+                      <div
+                        className='w-[25px] h-[25px]'
+                        style={{
+                          backgroundColor: getColorAvatar(student.avatar),
+                        }}
+                      ></div>
                       <div>{student.firstname}</div>
                     </div>
                     <div className='basis-2/3'>
@@ -151,35 +157,23 @@ const Dashboard = () => {
           <Panel
             title={
               <>
-                <h2>Résultats Avatars</h2>
+                <h2>Résultats</h2>
               </>
             }
           >
-            {students.map(
-              (student, index) =>
-                index < 3 && (
-                  <div
-                    className='flex flex-col items-center gap-9 md:flex-row md:flex-wrap'
-                    key={`student-progression-card-${index}`}
-                  >
+            <div className='flex flex-col items-center justify-center gap-8 md:gap-3 md:flex-row md:flex-wrap'>
+              {students.map(
+                (student, index) =>
+                  index < 3 && (
                     <StudentProgressionCard
-                      color='var(--green-primary)'
+                      key={`student-progression-card-${index}`}
+                      avatar={student.avatar}
                       firstname={student.firstname}
                       progress={80}
                     />
-                    <StudentProgressionCard
-                      color='var(--green-primary)'
-                      firstname={student.firstname}
-                      progress={80}
-                    />
-                    <StudentProgressionCard
-                      color='var(--green-primary)'
-                      firstname={student.firstname}
-                      progress={80}
-                    />
-                  </div>
-                )
-            )}
+                  )
+              )}
+            </div>
           </Panel>
         </div>
       )}
