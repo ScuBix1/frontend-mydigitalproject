@@ -1,7 +1,6 @@
 import Button from '@/components/Button/Button';
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerDescription,
   DrawerFooter,
@@ -9,6 +8,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '../ui/drawer';
+import TutorNavigation from './TutorNavigation/TutorNavigation';
 
 interface AccountDrawerProps {
   className?: string;
@@ -25,15 +25,19 @@ const AccountDrawer = (props: AccountDrawerProps) => {
         </Button>
       </DrawerTrigger>
       <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-          <DrawerDescription>This action cannot be undone.</DrawerDescription>
+        <DrawerHeader className='p-0'>
+          <DrawerTitle className='bg-[var(--curious-blue-800)] rounded-b-[30%] w-full min-h-[70px] flex flex-col items-center justify-center'>
+            <Button variant='header'>
+              <i className='fa-solid fa-user '></i>
+            </Button>
+          </DrawerTitle>
+          <DrawerDescription className='text-h2 text-center'>
+            Compte
+          </DrawerDescription>
         </DrawerHeader>
+        <TutorNavigation className='flex flex-col flex-1 justify-center mx-10' />
         <DrawerFooter>
-          <Button>Submit</Button>
-          <DrawerClose asChild>
-            <Button>Cancel</Button>
-          </DrawerClose>
+          <img src='/assets/images/logo.png' alt='Maths et Magique' />
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
