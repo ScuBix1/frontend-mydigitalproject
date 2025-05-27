@@ -7,6 +7,7 @@ export const signupStudentSchema = z.object({
   grade: z.string().min(1, { message: 'Le niveau est obligatoire' }),
   password: z.string().min(1, { message: 'Le prénom est obligatoire' }),
   tutor_id: z.number().optional(),
+  avatar: z.string().optional(),
 });
 
 export type SignupStudentDto = z.infer<typeof signupStudentSchema>;

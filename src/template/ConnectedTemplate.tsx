@@ -5,14 +5,18 @@ import { PropsWithChildren } from 'react';
 interface ConnectedTemplateProps extends PropsWithChildren {
   headerContent?: React.ReactNode;
   className?: string;
+  isDashboard?: boolean;
+  isTutor?: boolean;
 }
 
 const ConnectedTemplate = (props: ConnectedTemplateProps) => {
-  const { headerContent, children, className } = props;
+  const { headerContent, children, isDashboard, isTutor, className } = props;
   return (
     <div className={clsx('min-h-screen flex flex-col', className)}>
-      <Header>{headerContent}</Header>
-      <main className='px-3'>{children}</main>
+      <Header isDashboard={isDashboard} isTutor={isTutor}>
+        {headerContent}
+      </Header>
+      <main className='px-3 py-10'>{children}</main>
     </div>
   );
 };

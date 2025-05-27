@@ -41,6 +41,7 @@
   /* foreground */
   --foreground-primary: #111624;
   --foreground-secondary: #FFFFFF;
+  --foreground-tertiary: #6C5D62;
   /* background */
   --background-primary: #F7F7FA;
   --background-secondary: #E2E4EB;
@@ -113,7 +114,7 @@
 
 .text-base {
   font-family: "Poppins", sans-serif;
-  font-weight: 400;
+  font-weight: 600;
   font-style: normal;
   font-size: 1rem;
 }
@@ -130,6 +131,20 @@
   font-weight: 400;
   font-style: normal;
   font-size: 1rem;
+}
+
+@media (max-width: 367px) {
+  .text-h1 {
+    font-size: 1.2rem;
+  }
+
+}
+
+@media (min-width: 368px) and (max-width: 640px) {
+  .text-h1 {
+    font-size: 1.5rem;
+  }
+
 }
 
 /*---break---*/

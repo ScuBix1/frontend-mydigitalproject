@@ -25,7 +25,7 @@ const MenuDrawer = (props: MenuDrawerProps) => {
           <Grid className='w-[15px] h-[15px]' />
         </Button>
       </DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent className='z-[99999]'>
         <DrawerHeader className='p-0'>
           <DrawerTitle className='bg-[var(--curious-blue-800)] rounded-b-[30%] w-full min-h-[70px] flex flex-col items-center justify-center'>
             <Button variant='header'>

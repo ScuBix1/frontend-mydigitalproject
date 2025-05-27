@@ -1,6 +1,7 @@
 import ArrowCircle from '@/assets/icons/ArrowCircle';
 import Grid from '@/assets/icons/Grid';
 import Profile from '@/assets/icons/Profile';
+import { Link } from 'react-router-dom';
 
 interface TutorNavigationProps {
   className?: string;
@@ -13,24 +14,24 @@ const TutorNavigation = (props: TutorNavigationProps) => {
     <nav className={className}>
       <ul className='flex flex-col gap-y-12'>
         <li>
-          <a href='' className={'flex items-center gap-2'}>
+          <Link to='/tutor/dashboard' className={'flex items-center gap-2'}>
             <Grid className='w-[30px] h-[30px]' /> Tableau de bord
-          </a>
+          </Link>
         </li>
         <li>
-          <a href='' className={'flex items-center gap-2'}>
+          <Link to='/tutor/add-student' className={'flex items-center gap-2'}>
             <Profile className='w-[30px] h-[30px]' /> Ajouter un enfant
-          </a>
+          </Link>
         </li>
         <li>
-          <a href='' className={'flex items-center gap-2'}>
+          <Link to='' className={'flex items-center gap-2'}>
             <Profile className='w-[30px] h-[30px]' /> Liste enfants
-          </a>
+          </Link>
         </li>
         <li>
-          <a href='' className={'flex items-center gap-2'}>
+          <Link to='' className={'flex items-center gap-2'}>
             <ArrowCircle className='w-[30px] h-[30px]' /> FAQ
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>

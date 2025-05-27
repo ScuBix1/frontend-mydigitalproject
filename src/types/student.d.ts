@@ -7,4 +7,12 @@ export interface Student {
   duration?: number;
   grade: string;
   avatar: string;
+  sessions: Session[];
+}
+
+export interface StudentWithSessions {
+  id: number;
+  firstname: string;
+  avatar: string;
+  sessions: Session[];
 }
