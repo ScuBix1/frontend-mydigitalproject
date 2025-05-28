@@ -1,7 +1,10 @@
 import { httpRequest } from '@/api/client';
 import { Session } from '@/types/session';
 
-const getStudentProgression = async (studentId: number, token?: string) => {
+const getStudentProgression = async (
+  studentId: number | null,
+  token?: string
+) => {
   const response = await httpRequest<Session[]>({
     url: `${import.meta.env.VITE_API_URL}/students/${studentId}/progressions`,
 

@@ -1,13 +1,19 @@
+import { useStudentProgression } from '@/api/tutor/students/getStudentProgression/useStudentProgression';
+import computeProgression from '@/lib/computeProgression';
 import clsx from 'clsx';
 
 interface ProgressBarProps {
   className?: string;
   progress?: number;
+  studentId?: number;
   variant?: 'student' | 'loading';
 }
 
 const ProgressBar = (props: ProgressBarProps) => {
-  const { className, progress = 0, variant = 'loading' } = props;
+  const { className, progress = 0, studentId, variant = 'loading' } = props;
+
+  const { data: progressionData } = useStudentProgression(studentId ?? null);
+  const progression = computeProgression(progressionData);
 
   return (
     <div
@@ -22,7 +28,7 @@ const ProgressBar = (props: ProgressBarProps) => {
     >
       <div
         className='h-full bg-[var(--orange-primary)] transition-all duration-75'
-        style={{ width: `${progress}%` }}
+        style={{ width: `${studentId ? progression : progress}%` }}
       ></div>
     </div>
   );

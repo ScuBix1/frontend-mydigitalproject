@@ -2,7 +2,7 @@ import { useAuth } from '@/context/auth/AuthContext';
 import { useQuery } from '@tanstack/react-query';
 import getStudentProgression from './getStudentProgression';
 
-export const useStudentProgression = (studentId: number) => {
+export const useStudentProgression = (studentId: number | null) => {
   const { token } = useAuth();
 
   return useQuery({

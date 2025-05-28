@@ -1,13 +1,14 @@
 import { SignupStudentDto } from '@/api/student/signup/shema';
 import useSignupStudent from '@/api/student/signup/useSignupStudent';
 import useStudents from '@/api/tutor/students/getStudents/useStudents';
+import Button from '@/components/Button/Button';
 import Panel from '@/components/Panel/Panel';
 import ProgressBar from '@/components/ProgressBar/ProgressBar';
 import StudentForm from '@/components/Student/StudentForm/StudentForm';
 import StudentProgressionCard from '@/components/Student/StudentProgressionCard/StudentProgressionCard';
 import { useAuth } from '@/context/auth/AuthContext';
 import { getColorAvatar } from '@/lib/getColorAvatar';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ConnectedTemplate from '../../template/ConnectedTemplate';
 
 const Dashboard = () => {
@@ -76,7 +77,7 @@ const Dashboard = () => {
                     className='flex gap-9 items-center'
                     key={`student-progression-${index}`}
                   >
-                    <div className='basis-1/3 flex flex-wrap items-center justify-center sm:justify-start gap-2'>
+                    <div className='basis-1/3 flex flex-col items-center justify-center gap-2 sm:justify-start md:flex-row'>
                       <div
                         className='w-[25px] h-[25px]'
                         style={{
@@ -86,30 +87,34 @@ const Dashboard = () => {
                       <div>{student.firstname}</div>
                     </div>
                     <div className='basis-2/3'>
-                      <ProgressBar variant='student' progress={80} />
+                      <ProgressBar variant='student' studentId={student.id} />
                     </div>
                   </div>
                 )
             )}
           </Panel>
-
-          <Panel title={<h2 className='w-full text-center'>Résultats</h2>}>
-            <div className='flex flex-col items-center justify-center gap-8 md:gap-3 md:flex-row md:flex-nowrap'>
-              {students?.map((student, index) => {
-                console.log(student);
-                if (index < 3) {
-                  return (
-                    <StudentProgressionCard
-                      key={`student-progression-card-${index}`}
-                      avatar={student.avatar}
-                      firstname={student.firstname}
-                      studentId={student.id}
-                    />
-                  );
-                }
-              })}
-            </div>
-          </Panel>
+          <div className='flex flex-col gap-y-4 items-end'>
+            <Panel title={<h2 className='w-full text-center'>Résultats</h2>}>
+              <div className='flex flex-col items-center justify-center gap-8 md:gap-3 md:flex-row md:flex-nowrap'>
+                {students?.map((student, index) => {
+                  console.log(student);
+                  if (index < 3) {
+                    return (
+                      <StudentProgressionCard
+                        key={`student-progression-card-${index}`}
+                        avatar={student.avatar}
+                        firstname={student.firstname}
+                        studentId={student.id}
+                      />
+                    );
+                  }
+                })}
+              </div>
+            </Panel>
+            <Button asChild>
+              <Link to='/tutor/all-students'>Liste enfants</Link>
+            </Button>
+          </div>
         </div>
       )}
     </ConnectedTemplate>

@@ -18,6 +18,7 @@ const StudentProgressionCard = (props: StudentProgressionCardProps) => {
 
   const { data: progressionData } = useStudentProgression(studentId);
   const progression = computeProgression(progressionData);
+
   return (
     <div
       className={cn(

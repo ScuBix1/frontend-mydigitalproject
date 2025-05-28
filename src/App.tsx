@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import PrivateRoute from './layouts/PrivateRoute/PrivateRoute';
 import AddStudent from './pages/AddStudent/AddStudent';
+import AllStudents from './pages/AllStudents/AllStudents';
 import Dashboard from './pages/Dashboard/Dashboard';
 import EmailVerification from './pages/EmailVerification/EmailVerification';
 import Loading from './pages/Loading/Loading';
@@ -20,6 +21,7 @@ function App() {
       <Route path='/tutor' element={<PrivateRoute />}>
         <Route path='dashboard' element={<Dashboard />} />
         <Route path='add-student' element={<AddStudent />} />
+        <Route path='all-students' element={<AllStudents />} />
       </Route>
     </Routes>
   );
