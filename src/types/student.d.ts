@@ -8,6 +8,7 @@ export interface Student {
   grade: string;
   avatar: string;
   sessions: Session[];
+  password?: string;
 }
 
 export interface StudentWithSessions {
@@ -15,4 +16,14 @@ export interface StudentWithSessions {
   firstname: string;
   avatar: string;
   sessions: Session[];
+}
+
+export interface UpdateStudentDto {
+  firstname?: string;
+  lastname?: string;
+  username?: string;
+  password?: string;
+  avatar?: string;
+  start_hour?: string;
+  duration?: number;
 }

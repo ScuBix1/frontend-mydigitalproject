@@ -16,9 +16,7 @@ const ConnectedTemplate = (props: ConnectedTemplateProps) => {
       <Header isDashboard={isDashboard} isTutor={isTutor}>
         {headerContent}
       </Header>
-      <main className='flex flex-col px-3 py-10 flex-1 justify-center'>
-        {children}
-      </main>
+      <main className='flex flex-col px-3 py-10 flex-1'>{children}</main>
     </div>
   );
 };

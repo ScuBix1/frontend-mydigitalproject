@@ -1,6 +1,6 @@
 import { SignupStudentDto } from '@/api/student/signup/shema';
 import useSignupStudent from '@/api/student/signup/useSignupStudent';
-import useStudents from '@/api/tutor/students/getStudents/useStudents';
+import useStudentsWithProgression from '@/api/tutor/students/getStudentProgression/useStudentsWithProgression';
 import Button from '@/components/Button/Button';
 import Panel from '@/components/Panel/Panel';
 import ProgressBar from '@/components/ProgressBar/ProgressBar';
@@ -8,6 +8,7 @@ import StudentForm from '@/components/Student/StudentForm/StudentForm';
 import StudentProgressionCard from '@/components/Student/StudentProgressionCard/StudentProgressionCard';
 import { useAuth } from '@/context/auth/AuthContext';
 import { getColorAvatar } from '@/lib/getColorAvatar';
+import sortBy from '@/lib/sort';
 import { Link, useNavigate } from 'react-router-dom';
 import ConnectedTemplate from '../../template/ConnectedTemplate';
 
@@ -17,7 +18,13 @@ const Dashboard = () => {
   console.log(token);
   const isTutor = user && user.role === 'tutor';
 
-  const { data: students, isLoading, isError } = useStudents();
+  const {
+    isLoading,
+    isError,
+    students: studentsProgression,
+  } = useStudentsWithProgression();
+
+  const students = sortBy(studentsProgression, 'progression', 'desc');
 
   const {
     mutate: studentMutate,
@@ -87,7 +94,10 @@ const Dashboard = () => {
                       <div>{student.firstname}</div>
                     </div>
                     <div className='basis-2/3'>
-                      <ProgressBar variant='student' studentId={student.id} />
+                      <ProgressBar
+                        variant='student'
+                        progress={student.progression}
+                      />
                     </div>
                   </div>
                 )
@@ -104,6 +114,7 @@ const Dashboard = () => {
                         key={`student-progression-card-${index}`}
                         avatar={student.avatar}
                         firstname={student.firstname}
+                        progression={student.progression}
                         studentId={student.id}
                       />
                     );

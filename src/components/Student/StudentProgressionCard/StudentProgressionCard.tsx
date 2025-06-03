@@ -1,5 +1,3 @@
-import { useStudentProgression } from '@/api/tutor/students/getStudentProgression/useStudentProgression';
-import computeProgression from '@/lib/computeProgression';
 import { getColorAvatar } from '@/lib/getColorAvatar';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
@@ -9,15 +7,13 @@ import ProgressBar from '../../ProgressBar/ProgressBar';
 interface StudentProgressionCardProps {
   className?: string;
   firstname?: string;
-  studentId: number;
+  progression?: number;
   avatar?: string;
+  studentId?: number;
 }
 
 const StudentProgressionCard = (props: StudentProgressionCardProps) => {
-  const { className, firstname, studentId, avatar } = props;
-
-  const { data: progressionData } = useStudentProgression(studentId);
-  const progression = computeProgression(progressionData);
+  const { className, firstname, avatar, progression = 0, studentId } = props;
 
   return (
     <div
@@ -45,14 +41,7 @@ const StudentProgressionCard = (props: StudentProgressionCardProps) => {
           className='p-0 text-[var(--foreground-tertiary)] font-[400]'
           asChild
         >
-          <Link to=''>Jouer</Link>
-        </Button>
-        <Button
-          variant='link'
-          className='p-0 text-[var(--foreground-tertiary)] font-[400]'
-          asChild
-        >
-          <Link to=''>Modifier</Link>
+          <Link to={`/tutor/student/${studentId}`}>Voir profil</Link>
         </Button>
       </div>
     </div>

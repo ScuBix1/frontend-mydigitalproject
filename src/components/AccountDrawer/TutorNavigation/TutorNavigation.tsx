@@ -17,12 +17,12 @@ const TutorNavigation = (props: TutorNavigationProps) => {
     <nav className={className}>
       <ul className='flex flex-col gap-y-12'>
         <li>
-          <a href='' className={'flex items-center gap-2'}>
+          <a href='/tutor/profile' className={'flex items-center gap-2'}>
             <Profile className='w-[30px] h-[30px]' /> Mon profil
           </a>
         </li>
         <li>
-          <a href='' className={'flex items-center gap-2'}>
+          <a href='/tutor/subscription' className={'flex items-center gap-2'}>
             <ArrowCircle className='w-[30px] h-[30px]' /> Abonnement
           </a>
         </li>

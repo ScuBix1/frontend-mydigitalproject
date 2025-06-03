@@ -7,6 +7,9 @@ import EmailVerification from './pages/EmailVerification/EmailVerification';
 import Loading from './pages/Loading/Loading';
 import Signin from './pages/Signin/Signin';
 import Signup from './pages/Signup/Signup';
+import StudentProfile from './pages/StudentProfile/StudentProfile';
+import Subscription from './pages/Subscription/Subscription';
+import TutorProfile from './pages/TutorProfile/TutorProfile';
 import Template from './template/Template';
 
 function App() {
@@ -22,6 +25,9 @@ function App() {
         <Route path='dashboard' element={<Dashboard />} />
         <Route path='add-student' element={<AddStudent />} />
         <Route path='all-students' element={<AllStudents />} />
+        <Route path='profile' element={<TutorProfile />} />
+        <Route path='student/:id' element={<StudentProfile />} />
+        <Route path='subscription' element={<Subscription />} />
       </Route>
     </Routes>
   );

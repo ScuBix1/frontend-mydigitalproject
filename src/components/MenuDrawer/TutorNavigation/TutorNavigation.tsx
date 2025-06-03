@@ -24,7 +24,7 @@ const TutorNavigation = (props: TutorNavigationProps) => {
           </Link>
         </li>
         <li>
-          <Link to='' className={'flex items-center gap-2'}>
+          <Link to='/tutor/all-students' className={'flex items-center gap-2'}>
             <Profile className='w-[30px] h-[30px]' /> Liste enfants
           </Link>
         </li>

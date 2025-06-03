@@ -15,7 +15,7 @@ const Panel = (props: PanelProps) => {
         className
       )}
     >
-      <div className='flex justify-between gap-9'>{title}</div>
+      {title && <div className='flex justify-between gap-9'>{title}</div>}
       {children}
     </div>
   );

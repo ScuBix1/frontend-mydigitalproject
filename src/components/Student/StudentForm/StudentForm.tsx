@@ -42,13 +42,11 @@ const StudentForm = (props: StudentFormProps) => {
       onSubmit={handleSubmit(onSubmit)}
       className='flex flex-col gap-5 items-start'
     >
-      <div className='flex flex-col gap-y-3'>
-        <span>Avatar</span>
-        <StudentAvatarPicker
-          selectedAvatar={avatar}
-          onAvatarSelect={setAvatar}
-        />
-      </div>
+      <StudentAvatarPicker
+        selectedAvatar={avatar}
+        onAvatarSelect={setAvatar}
+        className='mx-auto'
+      />
       <Input
         textLabel='Nom'
         id='lastname'
