@@ -5,9 +5,12 @@ const buttonVariant = tv({
   base: 'rounded-[20px] px-8 py-2 cursor-pointer',
   variants: {
     variant: {
-      primary: 'bg-[var(--orange-primary)] text-[var(--foreground-secondary)]',
+      primary: 'bg-[var(--orange-primary)] text-[var(--foreground-primary)]',
       icon: 'bg-transparent',
       link: 'bg-transparent underline',
+      header:
+        'bg-[var(--background-primary)] flex items-center justify-center text-[var(--foreground-primary)] rounded-full p-3 w-fit h-fit',
+      noStyle: 'p-0',
     },
   },
   defaultVariants: {
@@ -17,7 +20,7 @@ const buttonVariant = tv({
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
-  variant?: 'primary' | 'icon' | 'link';
+  variant?: 'primary' | 'icon' | 'link' | 'header' | 'noStyle';
   asChild?: boolean;
 }
 

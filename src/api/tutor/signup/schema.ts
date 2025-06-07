@@ -28,7 +28,7 @@ export const signupSchema = z.object({
           return false;
         }
 
-        const [dayStr, monthStr, yearStr] = value.match(birthdateRegex)!;
+        const [, dayStr, monthStr, yearStr] = value.match(birthdateRegex)!;
 
         const day = parseInt(dayStr, 10);
         const month = parseInt(monthStr, 10);
