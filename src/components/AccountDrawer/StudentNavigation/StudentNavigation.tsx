@@ -16,7 +16,7 @@ const StudentNavigation = (props: StudentNavigationProps) => {
     <nav className={className}>
       <ul className='flex flex-col gap-y-12'>
         <li>
-          <a href='/tutor/profile' className={'flex items-center gap-2'}>
+          <a href='/student/dashboard' className={'flex items-center gap-2'}>
             <Profile className='w-[30px] h-[30px]' /> Voir profil
           </a>
         </li>

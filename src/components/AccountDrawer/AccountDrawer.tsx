@@ -22,10 +22,11 @@ interface AccountDrawerProps {
     | 'zebra.png'
     | 'cat.png'
     | 'cloud.png';
+  headerBackgroundColor?: string;
 }
 
 const AccountDrawer = (props: AccountDrawerProps) => {
-  const { className, isStudent, path } = props;
+  const { className, isStudent, headerBackgroundColor, path } = props;
   const navigationLinkClassName = 'flex flex-col flex-1 justify-center mx-10';
 
   return (
@@ -44,7 +45,10 @@ const AccountDrawer = (props: AccountDrawerProps) => {
               </Button>
             </DrawerTitle>
           ) : (
-            <DrawerTitle className='bg-[var(--curious-blue-800)] rounded-b-[30%] w-full min-h-[70px] flex flex-col items-center justify-center'>
+            <DrawerTitle
+              className='bg-[var(--curious-blue-800)] rounded-b-[30%] w-full min-h-[70px] flex flex-col items-center justify-center'
+              style={{ backgroundColor: headerBackgroundColor }}
+            >
               <Avatar path={path} />
             </DrawerTitle>
           )}

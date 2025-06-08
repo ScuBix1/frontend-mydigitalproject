@@ -22,9 +22,9 @@ const Level = (props: LevelProps) => {
     >
       {!isDisabled && <>{children}</>}
       {isDisabled && (
-        <div className='opacity-50 z-[99] flex flex-col items-center justify-center'>
+        <div className='opacity-50 flex flex-col items-center justify-center'>
           {children}
-          <div className='z-[100] absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-black rounded-full'>
+          <div className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-black rounded-full'>
             <img src='/assets/images/lock.png' alt='cadenas' />
           </div>
         </div>

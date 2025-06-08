@@ -12,16 +12,16 @@ import computeProgression from '@/lib/computeProgression';
 import ConnectedTemplate from '@/template/ConnectedTemplate';
 import { UpdateStudentDto } from '@/types/student';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Button from '../../../components/Button/Button';
 
 const StudentProfile = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const { data: student } = useStudent(id);
   const { mutate: mutateStudent } = useUpdateStudent(id);
   const { data: sessions } = useStudentProgressions(id);
   const { setStudentId, setDurationMinutes } = useStudentContext();
-  console.log(sessions);
 
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
@@ -63,6 +63,7 @@ const StudentProfile = () => {
     if (!student) return null;
     setStudentId(student.id);
     setDurationMinutes(duration);
+    navigate('/tutor/check');
   };
 
   return (

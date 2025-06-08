@@ -6,7 +6,13 @@ export interface Student {
   start_hour?: string;
   duration?: number;
   grade: string;
-  avatar: string;
+  avatar:
+    | 'wizard.png'
+    | 'ladybug.png'
+    | 'robot.png'
+    | 'zebra.png'
+    | 'cat.png'
+    | 'cloud.png';
   sessions: Session[];
   password?: string;
 }
@@ -14,7 +20,13 @@ export interface Student {
 export interface StudentWithSessions {
   id: number;
   firstname: string;
-  avatar: string;
+  avatar:
+    | 'wizard.png'
+    | 'ladybug.png'
+    | 'robot.png'
+    | 'zebra.png'
+    | 'cat.png'
+    | 'cloud.png';
   sessions: Session[];
 }
 
@@ -23,7 +35,13 @@ export interface UpdateStudentDto {
   lastname?: string;
   username?: string;
   password?: string;
-  avatar?: string;
+  avatar?:
+    | 'wizard.png'
+    | 'ladybug.png'
+    | 'robot.png'
+    | 'zebra.png'
+    | 'cat.png'
+    | 'cloud.png';
   start_hour?: string;
   duration?: number;
 }

@@ -7,13 +7,37 @@ interface ConnectedTemplateProps extends PropsWithChildren {
   className?: string;
   isDashboard?: boolean;
   isTutor?: boolean;
+  isStudent?: boolean;
+  headerBackgroundColor?: string;
+  path?:
+    | 'wizard.png'
+    | 'ladybug.png'
+    | 'robot.png'
+    | 'zebra.png'
+    | 'cat.png'
+    | 'cloud.png';
 }
 
 const ConnectedTemplate = (props: ConnectedTemplateProps) => {
-  const { headerContent, children, isDashboard, isTutor, className } = props;
+  const {
+    headerContent,
+    children,
+    isDashboard,
+    isTutor,
+    isStudent,
+    headerBackgroundColor,
+    path,
+    className,
+  } = props;
   return (
     <div className={clsx('min-h-screen flex flex-col', className)}>
-      <Header isDashboard={isDashboard} isTutor={isTutor}>
+      <Header
+        isDashboard={isDashboard}
+        isTutor={isTutor}
+        isStudent={isStudent}
+        headerBackgroundColor={headerBackgroundColor}
+        path={path}
+      >
         {headerContent}
       </Header>
       <main className='flex flex-col px-3 py-10 flex-1'>{children}</main>

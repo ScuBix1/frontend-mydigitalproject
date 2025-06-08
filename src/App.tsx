@@ -7,6 +7,7 @@ import Signup from './pages/Signup/Signup';
 import StudentDashboard from './pages/Student/StudentDashboard/StudentDashboard';
 import AddStudent from './pages/Tutor/AddStudent/AddStudent';
 import AllStudents from './pages/Tutor/AllStudents/AllStudents';
+import Check from './pages/Tutor/Check/Check';
 import Dashboard from './pages/Tutor/Dashboard/Dashboard';
 import StudentProfile from './pages/Tutor/StudentProfile/StudentProfile';
 import Subscription from './pages/Tutor/Subscription/Subscription';
@@ -22,7 +23,11 @@ function App() {
         <Route path='/signin' element={<Signin />} />
         <Route path='/email-verification' element={<EmailVerification />} />
       </Route>
-      <Route path='/test' element={<StudentDashboard />} />
+
+      <Route path='/student' element={<PrivateRoute />}>
+        <Route path='dashboard' element={<StudentDashboard />} />
+      </Route>
+
       <Route path='/tutor' element={<PrivateRoute />}>
         <Route path='dashboard' element={<Dashboard />} />
         <Route path='add-student' element={<AddStudent />} />
@@ -30,6 +35,9 @@ function App() {
         <Route path='profile' element={<TutorProfile />} />
         <Route path='student/:id' element={<StudentProfile />} />
         <Route path='subscription' element={<Subscription />} />
+        <Route element={<Template />}>
+          <Route path='check' element={<Check />} />
+        </Route>
       </Route>
     </Routes>
   );
