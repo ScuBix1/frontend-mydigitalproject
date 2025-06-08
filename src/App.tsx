@@ -1,15 +1,16 @@
 import { Route, Routes } from 'react-router-dom';
 import PrivateRoute from './layouts/PrivateRoute/PrivateRoute';
-import AddStudent from './pages/AddStudent/AddStudent';
-import AllStudents from './pages/AllStudents/AllStudents';
-import Dashboard from './pages/Dashboard/Dashboard';
 import EmailVerification from './pages/EmailVerification/EmailVerification';
 import Loading from './pages/Loading/Loading';
 import Signin from './pages/Signin/Signin';
 import Signup from './pages/Signup/Signup';
-import StudentProfile from './pages/StudentProfile/StudentProfile';
-import Subscription from './pages/Subscription/Subscription';
-import TutorProfile from './pages/TutorProfile/TutorProfile';
+import StudentDashboard from './pages/Student/StudentDashboard/StudentDashboard';
+import AddStudent from './pages/Tutor/AddStudent/AddStudent';
+import AllStudents from './pages/Tutor/AllStudents/AllStudents';
+import Dashboard from './pages/Tutor/Dashboard/Dashboard';
+import StudentProfile from './pages/Tutor/StudentProfile/StudentProfile';
+import Subscription from './pages/Tutor/Subscription/Subscription';
+import TutorProfile from './pages/Tutor/TutorProfile/TutorProfile';
 import Template from './template/Template';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path='/signin' element={<Signin />} />
         <Route path='/email-verification' element={<EmailVerification />} />
       </Route>
+      <Route path='/test' element={<StudentDashboard />} />
       <Route path='/tutor' element={<PrivateRoute />}>
         <Route path='dashboard' element={<Dashboard />} />
         <Route path='add-student' element={<AddStudent />} />

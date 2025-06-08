@@ -9,14 +9,17 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '../ui/drawer';
+import StudentNavigation from './StudentNavigation/StudentNavigation';
 import TutorNavigation from './TutorNavigation/TutorNavigation';
 
 interface MenuDrawerProps {
   className?: string;
+  isStudent?: boolean;
 }
 
 const MenuDrawer = (props: MenuDrawerProps) => {
-  const { className } = props;
+  const { className, isStudent } = props;
+  const navigationLinkClassName = 'flex flex-col flex-1 justify-center mx-10';
 
   return (
     <Drawer direction='left'>
@@ -36,7 +39,11 @@ const MenuDrawer = (props: MenuDrawerProps) => {
             Menu
           </DrawerDescription>
         </DrawerHeader>
-        <TutorNavigation className='flex flex-col flex-1 justify-center mx-10' />
+        {!isStudent ? (
+          <TutorNavigation className={navigationLinkClassName} />
+        ) : (
+          <StudentNavigation className={navigationLinkClassName} />
+        )}
         <DrawerFooter>
           <img src='/assets/images/logo.png' alt='Maths et Magique' />
         </DrawerFooter>

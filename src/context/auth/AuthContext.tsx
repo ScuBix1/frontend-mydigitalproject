@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 type AuthPayload = {
   id: number;
   username: string;
+  customer_id?: string;
   role: 'tutor' | 'admin' | 'student';
   iat: number;
   exp: number;
