@@ -1,4 +1,5 @@
 import useStudent from '@/api/student/getStudent/useStudent';
+import { useStudentProgressions } from '@/api/student/progression/useStudentProgression';
 import { useUpdateStudent } from '@/api/student/updateStudent/useUpdateStudent';
 import Profile from '@/assets/icons/Profile';
 import EditableField from '@/components/EditableField/EditableField';
@@ -6,16 +7,21 @@ import Panel from '@/components/Panel/Panel';
 import ProgressBar from '@/components/ProgressBar/ProgressBar';
 import AvatarPicker from '@/components/Student/StudentAvatarPicker/StudentAvatarPicker';
 import TimeSlider from '@/components/TimeSlider/TimeSlider';
+import { useStudentContext } from '@/context/student/StudentContext';
+import computeProgression from '@/lib/computeProgression';
 import ConnectedTemplate from '@/template/ConnectedTemplate';
 import { UpdateStudentDto } from '@/types/student';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import Button from '../../components/Button/Button';
+import { useNavigate, useParams } from 'react-router-dom';
+import Button from '../../../components/Button/Button';
 
 const StudentProfile = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const { data: student } = useStudent(id);
   const { mutate: mutateStudent } = useUpdateStudent(id);
+  const { data: sessions } = useStudentProgressions(id);
+  const { setStudentId, setDurationMinutes } = useStudentContext();
 
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
@@ -51,6 +57,13 @@ const StudentProfile = () => {
     }
 
     mutateStudent(changes);
+  };
+
+  const handleStartDuration = () => {
+    if (!student) return null;
+    setStudentId(student.id);
+    setDurationMinutes(duration);
+    navigate('/tutor/check');
   };
 
   return (
@@ -117,13 +130,13 @@ const StudentProfile = () => {
             <Panel className='max-w-fit h-full'>
               <div className='flex flex-col gap-y-2'>
                 <span>Progression</span>
-                <ProgressBar progress={30} />
+                <ProgressBar progress={computeProgression(sessions)} />
               </div>
               <div className='flex flex-col gap-y-2'>
                 <TimeSlider value={duration} onChange={setDuration} />
               </div>
             </Panel>
-            <Button>Démarrer la session</Button>
+            <Button onClick={handleStartDuration}>Démarrer la session</Button>
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import Button from '../../../components/Button/Button';
+import Button from '../../../../components/Button/Button';
 
 interface SortButtonProps {
   className?: string;

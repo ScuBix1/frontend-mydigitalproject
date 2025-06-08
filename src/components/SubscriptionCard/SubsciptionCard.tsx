@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import Button from '../Button/Button';
+import { ReactNode } from 'react';
 
 interface SubscriptionCardProps {
   className?: string;
@@ -7,11 +7,11 @@ interface SubscriptionCardProps {
   subTitle?: string;
   price?: number;
   period?: string;
-  textButton?: string;
+  button?: ReactNode;
 }
 
 const SubscriptionCard = (props: SubscriptionCardProps) => {
-  const { className, title, subTitle, price, period, textButton } = props;
+  const { className, title, subTitle, price, period, button } = props;
 
   return (
     <div
@@ -28,7 +28,7 @@ const SubscriptionCard = (props: SubscriptionCardProps) => {
         <span className='text-[var(--orange-primary)] text-[2.25rem]'>{`${price} €`}</span>
         <span>/{period}</span>
       </div>
-      <Button className='text-[1.25rem]'>{textButton}</Button>
+      {button}
     </div>
   );
 };

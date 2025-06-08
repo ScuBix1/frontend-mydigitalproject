@@ -1,7 +1,7 @@
 export interface Session {
-  gameId: number;
-  gameName: string;
-  maxScore: number;
-  percent: number;
+  game_id: number;
+  game_name: string;
+  max_score: number;
+  per_cent: number;
   score: number;
 }

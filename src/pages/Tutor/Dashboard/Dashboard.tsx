@@ -9,11 +9,10 @@ import StudentProgressionCard from '@/components/Student/StudentProgressionCard/
 import { useAuth } from '@/context/auth/AuthContext';
 import { getColorAvatar } from '@/lib/getColorAvatar';
 import sortBy from '@/lib/sort';
-import { Link, useNavigate } from 'react-router-dom';
-import ConnectedTemplate from '../../template/ConnectedTemplate';
+import { Link } from 'react-router-dom';
+import ConnectedTemplate from '../../../template/ConnectedTemplate';
 
 const Dashboard = () => {
-  const navigate = useNavigate();
   const { user, token } = useAuth();
   console.log(token);
   const isTutor = user && user.role === 'tutor';
@@ -25,6 +24,7 @@ const Dashboard = () => {
   } = useStudentsWithProgression();
 
   const students = sortBy(studentsProgression, 'progression', 'desc');
+  console.log(students);
 
   const {
     mutate: studentMutate,
@@ -39,7 +39,6 @@ const Dashboard = () => {
   if (isLoading) return <div className='text-black'>Chargement ...</div>;
 
   if (isError) {
-    navigate('/signin');
     return null;
   }
 

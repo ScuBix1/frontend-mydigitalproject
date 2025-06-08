@@ -3,7 +3,7 @@ import { useAuth } from '@/context/auth/AuthContext';
 import computeProgression from '@/lib/computeProgression';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import getStudentProgression from './getStudentProgression';
+import getStudentProgression from '../../../student/progression/api';
 
 const useStudentsWithProgression = () => {
   const { data: students } = useStudents();
@@ -30,7 +30,8 @@ const useStudentsWithProgression = () => {
           students.map(async (student) => {
             const data = await queryClient.fetchQuery({
               queryKey: ['students-progression', student.id],
-              queryFn: () => getStudentProgression(student.id, token),
+              queryFn: () =>
+                getStudentProgression(student.id.toString(), token),
             });
 
             return {
