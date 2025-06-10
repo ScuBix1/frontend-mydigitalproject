@@ -46,10 +46,10 @@ const AccountDrawer = (props: AccountDrawerProps) => {
             </DrawerTitle>
           ) : (
             <DrawerTitle
-              className='bg-[var(--curious-blue-800)] rounded-b-[30%] w-full min-h-[70px] flex flex-col items-center justify-center'
+              className='bg-[var(--curious-blue-800)] rounded-b-[30%] w-full min-h-[130px] flex flex-col items-center justify-center'
               style={{ backgroundColor: headerBackgroundColor }}
             >
-              <Avatar path={path} />
+              <Avatar path={path} className='w-[70px] h-[70px]' />
             </DrawerTitle>
           )}
           <DrawerDescription className='text-h2 text-center'>

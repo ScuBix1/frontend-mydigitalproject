@@ -1,13 +1,23 @@
 import useStudent from '@/api/student/getStudent/useStudent';
+import { useStudentProgressions } from '@/api/student/progression/useStudentProgression';
 import Level from '@/components/Level/Level';
+import { levels } from '@/constants/levels';
+import { medals } from '@/constants/medals';
 import { useStudentContext } from '@/context/student/StudentContext';
 import ConnectedTemplate from '@/template/ConnectedTemplate';
 import Medal from '../../../components/Medal/Medal';
 
 const StudentDashboard = () => {
-  const { studentId, durationMinutes } = useStudentContext();
+  const { studentId } = useStudentContext();
   const { data: student } = useStudent(studentId);
-  console.log(studentId, durationMinutes, student);
+  const { data: progressions } = useStudentProgressions(studentId);
+  console.log(progressions);
+
+  const unlockedCount = progressions?.length || 0;
+  const nextIndexToPlay =
+    progressions?.findIndex((p) => p.per_cent < 100) ?? -1;
+  const nextPlayableIndex =
+    nextIndexToPlay !== -1 ? nextIndexToPlay : unlockedCount;
 
   return (
     <ConnectedTemplate
@@ -20,46 +30,47 @@ const StudentDashboard = () => {
           <img
             src='/assets/images/abacus.png'
             alt='boulier'
-            className='w-[80px] h-[80px]'
+            className='w-[50px] h-[50px] sm:w-[80px] sm:h-[80px] md:w-[100px] md:h-[100px]'
           />
           <h1 className='text-h1 text-[var(--foreground-secondary)]'>{`Tableau de bord de ${student?.firstname}`}</h1>
         </div>
       }
     >
-      <div className='flex flex-col items-center justify-center'>
+      <div className='flex flex-col items-center justify-center px-8'>
         <div className='flex flex-wrap gap-8 items-center justify-center mt-10'>
-          <Level>
-            <div className='flex flex-col gap-2 items-center justify-center'>
-              <img src='/assets/images/game1.png' />
-              <h2 className='text-walter text-[var(--foreground-secondary)]'>
-                Niveau 1
-              </h2>
-            </div>
-          </Level>
-          <Level isLast color='var(--pink-primary)'>
-            <img src='/assets/images/game2.png' />
-            <h2>Niveau 2</h2>
-          </Level>
-          <Level isDisabled>
-            <img src='/assets/images/game3.png' />
-            <h2>Niveau 3</h2>
-          </Level>
-          <Level isDisabled>
-            <img src='/assets/images/game4.png' />
-            <h2>Niveau 4</h2>
-          </Level>
-          <Level isDisabled>
-            <img src='/assets/images/game5.png' />
-            <h2>Récompense</h2>
-          </Level>
+          {levels.map((level, index) => {
+            const isLast = index === nextPlayableIndex;
+            const isDisabled = index > unlockedCount;
+
+            return (
+              <Level
+                key={level.id}
+                isLast={isLast}
+                isDisabled={isDisabled}
+                color={level.color}
+                path={level.path}
+              >
+                <div className='flex flex-col gap-2 items-center justify-center'>
+                  <img src={level.image} />
+                  <h2 className='text-walter text-[var(--foreground-secondary)]'>
+                    {level.label}
+                  </h2>
+                </div>
+              </Level>
+            );
+          })}
         </div>
+
         <div className='mt-10 flex flex-wrap justify-center items-center gap-3'>
           <div className='max-w-[400px] flex flex-wrap gap-3 justify-center items-center'>
-            <Medal />
-            <Medal />
-            <Medal />
-            <Medal />
-            <Medal />
+            {medals.map((medal, index) => {
+              const isReceived = progressions?.[index]?.per_cent === 100;
+              return (
+                <Medal key={medal.id} isReceived={isReceived}>
+                  <img src={medal.image} alt={medal.alt} />
+                </Medal>
+              );
+            })}
           </div>
         </div>
       </div>

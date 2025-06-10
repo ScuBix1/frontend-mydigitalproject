@@ -4,7 +4,9 @@ import EmailVerification from './pages/EmailVerification/EmailVerification';
 import Loading from './pages/Loading/Loading';
 import Signin from './pages/Signin/Signin';
 import Signup from './pages/Signup/Signup';
+import GameViewer from './pages/Student/GameViewer/GameViewer';
 import StudentDashboard from './pages/Student/StudentDashboard/StudentDashboard';
+import Victory from './pages/Student/Victory/Victory';
 import AddStudent from './pages/Tutor/AddStudent/AddStudent';
 import AllStudents from './pages/Tutor/AllStudents/AllStudents';
 import Check from './pages/Tutor/Check/Check';
@@ -26,6 +28,8 @@ function App() {
 
       <Route path='/student' element={<PrivateRoute />}>
         <Route path='dashboard' element={<StudentDashboard />} />
+        <Route path='game/:id' element={<GameViewer />} />
+        <Route path='victory/:id' element={<Victory />} />
       </Route>
 
       <Route path='/tutor' element={<PrivateRoute />}>

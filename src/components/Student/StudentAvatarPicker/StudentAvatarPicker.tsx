@@ -7,11 +7,12 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
+import { AvatarName } from '@/types/student';
 import clsx from 'clsx';
 import { useState } from 'react';
 import Button from '../../Button/Button';
 
-const avatars = [
+const avatars: AvatarName[] = [
   'wizard.png',
   'robot.png',
   'ladybug.png',
@@ -21,7 +22,7 @@ const avatars = [
 ];
 
 interface AvatarPickerProps {
-  onAvatarSelect: (avatar: string) => void;
+  onAvatarSelect: (avatar: AvatarName) => void;
   selectedAvatar: string;
   className?: string;
 }

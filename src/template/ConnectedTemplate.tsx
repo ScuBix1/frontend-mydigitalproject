@@ -1,4 +1,5 @@
 import Header from '@/components/Header/Header';
+import { AvatarName } from '@/types/student';
 import clsx from 'clsx';
 import { PropsWithChildren } from 'react';
 
@@ -9,13 +10,7 @@ interface ConnectedTemplateProps extends PropsWithChildren {
   isTutor?: boolean;
   isStudent?: boolean;
   headerBackgroundColor?: string;
-  path?:
-    | 'wizard.png'
-    | 'ladybug.png'
-    | 'robot.png'
-    | 'zebra.png'
-    | 'cat.png'
-    | 'cloud.png';
+  path?: string;
 }
 
 const ConnectedTemplate = (props: ConnectedTemplateProps) => {
@@ -36,7 +31,7 @@ const ConnectedTemplate = (props: ConnectedTemplateProps) => {
         isTutor={isTutor}
         isStudent={isStudent}
         headerBackgroundColor={headerBackgroundColor}
-        path={path}
+        path={path as AvatarName}
       >
         {headerContent}
       </Header>
