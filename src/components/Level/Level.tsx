@@ -1,15 +1,23 @@
 import { cn } from '@/lib/utils';
 import { PropsWithChildren } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface LevelProps extends PropsWithChildren {
   className?: string;
   isDisabled?: boolean;
   isLast?: boolean;
   color?: string;
+  path?: string;
 }
 
 const Level = (props: LevelProps) => {
-  const { className, isDisabled, isLast, color, children } = props;
+  const { className, isDisabled, isLast, color, path, children } = props;
+  const navigate = useNavigate();
+
+  const handleClick = (path?: string) => {
+    if (!path) return null;
+    navigate(`${path}`);
+  };
 
   return (
     <div
@@ -18,7 +26,8 @@ const Level = (props: LevelProps) => {
         { 'bg-[var(--background-secondary)] cursor-default': isDisabled },
         className
       )}
-      style={{ backgroundColor: color }}
+      style={!isDisabled ? { backgroundColor: color } : undefined}
+      onClick={() => handleClick(path)}
     >
       {!isDisabled && <>{children}</>}
       {isDisabled && (

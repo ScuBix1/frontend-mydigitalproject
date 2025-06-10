@@ -52,7 +52,9 @@
   --orange-primary: #FFA559;
   --green-primary: #62C370;
   --gray-primary: #221E1F1A;
+  --purple-primary: #993FDE;
   /* secondary */
+  --orange-secondary: #FFD2A9;
   /* tertiary */
   --gray-tertiary: #9F9196;
 
@@ -151,9 +153,30 @@
 
 }
 
+@keyframes spinWithPause {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(360deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-with-pause {
+  animation: spinWithPause 2s infinite;
+  animation-timing-function: linear;
+}
+
 /*---break---*/
 
 @theme inline {
+  --breakpoint-xs: 367px;
+  --breakpoint-sm: 640px;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

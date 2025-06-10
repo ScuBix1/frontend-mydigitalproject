@@ -10,7 +10,7 @@ import TimeSlider from '@/components/TimeSlider/TimeSlider';
 import { useStudentContext } from '@/context/student/StudentContext';
 import computeProgression from '@/lib/computeProgression';
 import ConnectedTemplate from '@/template/ConnectedTemplate';
-import { UpdateStudentDto } from '@/types/student';
+import { AvatarName, UpdateStudentDto } from '@/types/student';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Button from '../../../components/Button/Button';
@@ -27,7 +27,7 @@ const StudentProfile = () => {
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [avatar, setAvatar] = useState('');
+  const [avatar, setAvatar] = useState<AvatarName>('wizard.png');
   const [duration, setDuration] = useState(20);
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const StudentProfile = () => {
 
   const handleStartDuration = () => {
     if (!student) return null;
-    setStudentId(student.id);
+    setStudentId(student.id.toString());
     setDurationMinutes(duration);
     navigate('/tutor/check');
   };

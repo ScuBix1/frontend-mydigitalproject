@@ -45,3 +45,11 @@ export interface UpdateStudentDto {
   start_hour?: string;
   duration?: number;
 }
+
+type AvatarName =
+  | 'wizard.png'
+  | 'ladybug.png'
+  | 'robot.png'
+  | 'zebra.png'
+  | 'cat.png'
+  | 'cloud.png';
