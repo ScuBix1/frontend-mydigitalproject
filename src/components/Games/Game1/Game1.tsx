@@ -1,7 +1,10 @@
+import { useCreateSession } from '@/api/session/createSession/useCreateSession';
+import { useSessionExisting } from '@/api/session/getSessionExisting/useSessionExisting';
+import { useUpdateSession } from '@/api/session/updateSession/useUpdateSession';
 import Button from '@/components/Button/Button';
 import { useStudentContext } from '@/context/student/StudentContext';
 import ConnectedTemplate from '@/template/ConnectedTemplate';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ArrowRight from '../../../assets/icons/ArrowRight';
 
 interface Color {
@@ -50,7 +53,39 @@ const Game1 = () => {
   const [round, setRound] = useState(1);
   const [colors, setColors] = useState(generateRound);
   const [gameOver, setGameOver] = useState(false);
-  const { pathAvatar } = useStudentContext();
+  const { pathAvatar, studentId } = useStudentContext();
+  const [sessionId, setSessionId] = useState<number | null>(null);
+  const sessionCreationStartedRef = useRef(false);
+
+  const { mutate: createSession } = useCreateSession();
+  const { mutate: updateSession } = useUpdateSession();
+  const { data: isSessionExisting, isLoading: isLoadingSessionExisting } =
+    useSessionExisting();
+
+  useEffect(() => {
+    if (
+      isLoadingSessionExisting ||
+      isSessionExisting ||
+      sessionCreationStartedRef.current ||
+      !studentId
+    )
+      return;
+
+    sessionCreationStartedRef.current = true;
+
+    createSession(
+      { game_id: 1, student_id: +studentId, score: 0 },
+      {
+        onSuccess: (data) => setSessionId(data.session.id),
+      }
+    );
+  }, [studentId, isLoadingSessionExisting, isSessionExisting, createSession]);
+
+  useEffect(() => {
+    if (gameOver && studentId && sessionCreationStartedRef.current) {
+      updateSession({ score, studentId: parseInt(studentId), gameId: 1 });
+    }
+  }, [gameOver, sessionId, studentId, isSessionExisting]);
 
   useEffect(() => {
     if (timeLeft <= 0 || round > 5) {
@@ -63,7 +98,7 @@ const Game1 = () => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [timeLeft, round]);
+  }, [timeLeft, round, sessionId, score, updateSession]);
 
   const handleClick = (color: Color) => {
     if (gameOver) return;

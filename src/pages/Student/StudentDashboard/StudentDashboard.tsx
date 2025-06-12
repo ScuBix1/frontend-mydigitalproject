@@ -13,7 +13,7 @@ const StudentDashboard = () => {
   const { data: progressions } = useStudentProgressions(studentId);
   console.log(progressions);
 
-  const unlockedCount = progressions?.length || 0;
+  const unlockedCount = progressions?.length ? progressions.length - 1 : 0;
   const nextIndexToPlay =
     progressions?.findIndex((p) => p.per_cent < 100) ?? -1;
   const nextPlayableIndex =
