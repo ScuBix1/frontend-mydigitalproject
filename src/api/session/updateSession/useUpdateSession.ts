@@ -14,7 +14,7 @@ export const useUpdateSession = () => {
     },
     onSuccess: (_data, variables) => {
       queryClient.invalidateQueries({
-        queryKey: ['/sessions/student', variables.sessionId],
+        queryKey: ['/sessions/student', variables.gameId],
       });
     },
   });
