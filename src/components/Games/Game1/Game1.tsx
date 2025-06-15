@@ -1,6 +1,7 @@
 import { useCreateSession } from '@/api/session/createSession/useCreateSession';
 import { useSessionExisting } from '@/api/session/getSessionExisting/useSessionExisting';
 import { useUpdateSession } from '@/api/session/updateSession/useUpdateSession';
+import useStudent from '@/api/student/getStudent/useStudent';
 import Button from '@/components/Button/Button';
 import { useStudentContext } from '@/context/student/useStudentContext';
 import ConnectedTemplate from '@/template/ConnectedTemplate';
@@ -54,7 +55,8 @@ const Game1 = () => {
   const [round, setRound] = useState(1);
   const [colors, setColors] = useState(generateRound);
   const [gameOver, setGameOver] = useState(false);
-  const { pathAvatar, studentId } = useStudentContext();
+  const { studentId } = useStudentContext();
+  const { data: student } = useStudent(studentId);
   const [sessionId, setSessionId] = useState<number | null>(null);
   const sessionCreationStartedRef = useRef(false);
 
@@ -124,7 +126,7 @@ const Game1 = () => {
           headerBackgroundColor='var(--orange-secondary)'
           className='justify-center items-center'
           headerContent={<h1 className='text-h1 py-5'>Niveau 1</h1>}
-          path={`/assets/images/${pathAvatar}`}
+          path={`${student.avatar}`}
         >
           <div className='flex flex-col justify-center items-center p-4 max-w-xl mx-auto text-center'>
             <div className='flex flex-col gap-4'>

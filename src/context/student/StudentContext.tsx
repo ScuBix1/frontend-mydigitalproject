@@ -17,6 +17,7 @@ export const StudentProvider = ({ children }: { children: ReactNode }) => {
 
   const [pathAvatar, setPathAvatarState] = useState<AvatarName>(() => {
     const stored = localStorage.getItem('pathAvatar');
+    console.log('pathAvatar', stored);
     if (stored) {
       return stored as AvatarName;
     }
