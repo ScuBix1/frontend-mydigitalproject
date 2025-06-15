@@ -3,7 +3,7 @@ import { useStudentProgressions } from '@/api/student/progression/useStudentProg
 import Level from '@/components/Level/Level';
 import { levels } from '@/constants/levels';
 import { medals } from '@/constants/medals';
-import { useStudentContext } from '@/context/student/StudentContext';
+import { useStudentContext } from '@/context/student/useStudentContext';
 import ConnectedTemplate from '@/template/ConnectedTemplate';
 import Medal from '../../../components/Medal/Medal';
 
@@ -11,11 +11,10 @@ const StudentDashboard = () => {
   const { studentId } = useStudentContext();
   const { data: student } = useStudent(studentId);
   const { data: progressions } = useStudentProgressions(studentId);
-  console.log(progressions);
 
   const unlockedCount = progressions?.length ? progressions.length - 1 : 0;
   const nextIndexToPlay =
-    progressions?.findIndex((p) => p.per_cent < 100) ?? -1;
+    progressions?.filter((p) => p.per_cent === 100).length ?? 0;
   const nextPlayableIndex =
     nextIndexToPlay !== -1 ? nextIndexToPlay : unlockedCount;
 
@@ -40,7 +39,7 @@ const StudentDashboard = () => {
         <div className='flex flex-wrap gap-8 items-center justify-center mt-10'>
           {levels.map((level, index) => {
             const isLast = index === nextPlayableIndex;
-            const isDisabled = index > unlockedCount;
+            const isDisabled = index > nextPlayableIndex;
 
             return (
               <Level

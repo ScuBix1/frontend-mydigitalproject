@@ -1,5 +1,5 @@
+import ArrowRight from '@/assets/icons/ArrowRight';
 import Button from '@/components/Button/Button';
-import { ArrowRight } from 'lucide-react';
 
 const Victory1 = () => {
   return (
@@ -10,7 +10,7 @@ const Victory1 = () => {
       <img
         src='/assets/images/color-medal.png'
         alt='boules souriantes victorieuses'
-        className='w-[280px] md:w-[415px] lg:w-[500px]'
+        className='w-[256px]'
       />
       <Button className='px-[100px]' asChild>
         <a href='/student/dashboard'>

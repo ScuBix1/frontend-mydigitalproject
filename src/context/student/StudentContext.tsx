@@ -1,16 +1,8 @@
-import { AvatarName } from '@/types/student';
-import { ReactNode, createContext, useContext, useState } from 'react';
+import { ReactNode, createContext, useState } from 'react';
 
-interface StudentContextType {
-  studentId?: string;
-  pathAvatar?: AvatarName;
-  durationMinutes: number;
-  setStudentId: (id: string) => void;
-  setDurationMinutes: (minutes: number) => void;
-  setPathAvatar: (path: AvatarName) => void;
-}
-
-const StudentContext = createContext<StudentContextType | undefined>(undefined);
+export const StudentContext = createContext<StudentContextType | undefined>(
+  undefined
+);
 
 export const StudentProvider = ({ children }: { children: ReactNode }) => {
   const [studentId, setStudentIdState] = useState<string | undefined>(() => {
@@ -60,14 +52,4 @@ export const StudentProvider = ({ children }: { children: ReactNode }) => {
       {children}
     </StudentContext.Provider>
   );
-};
-
-export const useStudentContext = () => {
-  const context = useContext(StudentContext);
-  if (!context) {
-    throw new Error(
-      'useStudentContext doit être utilisé avec un StudentProvider'
-    );
-  }
-  return context;
 };

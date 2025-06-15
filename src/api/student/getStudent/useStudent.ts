@@ -1,10 +1,10 @@
-import { useAuth } from '@/context/auth/AuthContext';
+import { useAuthContext } from '@/context/auth/useAuthContext';
 import { useQuery } from '@tanstack/react-query';
 import { getStudent } from './api';
 
 const useStudent = (studentId?: string) => {
   const queryKey = `/students/{studentId}`;
-  const { token } = useAuth();
+  const { token } = useAuthContext();
 
   return useQuery({
     queryKey: [queryKey, studentId],

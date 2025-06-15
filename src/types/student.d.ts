@@ -1,4 +1,4 @@
-export interface Student {
+interface Student {
   id: number;
   firstname: string;
   lastname: string;
@@ -17,7 +17,7 @@ export interface Student {
   password?: string;
 }
 
-export interface StudentWithSessions {
+interface StudentWithSessions {
   id: number;
   firstname: string;
   avatar:
@@ -30,7 +30,7 @@ export interface StudentWithSessions {
   sessions: Session[];
 }
 
-export interface UpdateStudentDto {
+interface UpdateStudentDto {
   firstname?: string;
   lastname?: string;
   username?: string;
@@ -53,3 +53,12 @@ type AvatarName =
   | 'zebra.png'
   | 'cat.png'
   | 'cloud.png';
+
+interface StudentContextType {
+  studentId?: string;
+  pathAvatar?: AvatarName;
+  durationMinutes: number;
+  setStudentId: (id: string) => void;
+  setDurationMinutes: (minutes: number) => void;
+  setPathAvatar: (path: AvatarName) => void;
+}

@@ -1,13 +1,12 @@
 import { useCheckoutSession } from '@/api/tutor/checkoutSession/useCheckoutSession';
 import SubscriptionCard from '@/components/SubscriptionCard/SubsciptionCard';
-import { useAuth } from '@/context/auth/AuthContext';
+import { useAuthContext } from '@/context/auth/useAuthContext';
 import ConnectedTemplate from '@/template/ConnectedTemplate';
 import Button from '../../../components/Button/Button';
 
 const Subscription = () => {
   const { mutate } = useCheckoutSession();
-  const { user } = useAuth();
-  console.log(user);
+  const { user } = useAuthContext();
 
   const handleClick = () => {
     if (user && user.customer_id) {

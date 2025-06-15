@@ -2,9 +2,10 @@ import { useCreateSession } from '@/api/session/createSession/useCreateSession';
 import { useSessionExisting } from '@/api/session/getSessionExisting/useSessionExisting';
 import { useUpdateSession } from '@/api/session/updateSession/useUpdateSession';
 import Button from '@/components/Button/Button';
-import { useStudentContext } from '@/context/student/StudentContext';
+import { useStudentContext } from '@/context/student/useStudentContext';
 import ConnectedTemplate from '@/template/ConnectedTemplate';
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import ArrowRight from '../../../assets/icons/ArrowRight';
 
 interface Color {
@@ -85,7 +86,7 @@ const Game1 = () => {
     if (gameOver && studentId && sessionCreationStartedRef.current) {
       updateSession({ score, studentId: parseInt(studentId), gameId: 1 });
     }
-  }, [gameOver, sessionId, studentId, isSessionExisting]);
+  }, [gameOver, sessionId, studentId, isSessionExisting, score, updateSession]);
 
   useEffect(() => {
     if (timeLeft <= 0 || round > 5) {
@@ -144,7 +145,7 @@ const Game1 = () => {
               </h2>
             </div>
 
-            <div className='flex gap-4 items-center justify-center'>
+            <div className='flex gap-4 items-center justify-center h-[100px]'>
               <div className='flex gap-4 items-center justify-center'>
                 {colors.top.map((color, index) => (
                   <div
@@ -154,12 +155,12 @@ const Game1 = () => {
                   />
                 ))}
               </div>
-              <span className='text-walter text-[200px]'>?</span>
+              <span className='text-walter text-[100px] w-[90px]'>?</span>
             </div>
 
-            <div className='h-2 bg-black rounded-xl my-4 w-[110%]' />
+            <div className='h-2 bg-black rounded-xl my-2 w-[110%]' />
 
-            <div className='flex gap-4 mt-6 pr-[91px]'>
+            <div className='flex gap-x-4 mt-2 pr-[90px] h-[100px]'>
               {colors.bottom.map((color, index) => (
                 <button
                   key={`bottom-${index}`}
@@ -182,11 +183,11 @@ const Game1 = () => {
             className='w-[280px] md:w-[415px] lg:w-[615px]'
           />
           <Button className='px-[100px]' asChild>
-            <a
-              href={score === 100 ? '/student/victory/1' : '/student/dashboard'}
+            <Link
+              to={score === 100 ? '/student/victory/1' : '/student/dashboard'}
             >
               <ArrowRight className='w-[40px]' />
-            </a>
+            </Link>
           </Button>
         </div>
       )}

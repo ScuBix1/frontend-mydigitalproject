@@ -7,7 +7,7 @@ import Panel from '@/components/Panel/Panel';
 import ProgressBar from '@/components/ProgressBar/ProgressBar';
 import AvatarPicker from '@/components/Student/StudentAvatarPicker/StudentAvatarPicker';
 import TimeSlider from '@/components/TimeSlider/TimeSlider';
-import { useStudentContext } from '@/context/student/StudentContext';
+import { useStudentContext } from '@/context/student/useStudentContext';
 import computeProgression from '@/lib/computeProgression';
 import ConnectedTemplate from '@/template/ConnectedTemplate';
 import { AvatarName, UpdateStudentDto } from '@/types/student';
@@ -63,7 +63,9 @@ const StudentProfile = () => {
     if (!student) return null;
     setStudentId(student.id.toString());
     setDurationMinutes(duration);
-    navigate('/tutor/check');
+    navigate('/tutor/check', {
+      state: { redirectTo: `/student/dashboard` },
+    });
   };
 
   return (
