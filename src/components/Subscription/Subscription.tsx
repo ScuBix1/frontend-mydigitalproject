@@ -7,11 +7,10 @@ import Button from '../Button/Button';
 const Subscription = () => {
   const { mutate } = useCheckoutSession();
   const { data: subscriptions } = useAllSubscriptions();
-  console.log(subscriptions);
   const { user } = useAuthContext();
 
-  const handleClick = () => {
-    if (user && user.customer_id && subscriptions) {
+  const handleClick = (subscriptions?: Subscription[]) => {
+    if (user && user.customer_id && subscriptions && subscriptions.length > 0) {
       mutate({
         price_id: subscriptions[0].stripe_price_id,
         customer_id: user.customer_id,
@@ -37,7 +36,7 @@ const Subscription = () => {
           Accès illimité niveau 1 gratuit, puis{' '}
           <span className='font-bold'>9,99€ /mois</span>
         </p>
-        <Button onClick={handleClick}>Commencer</Button>
+        <Button onClick={() => handleClick(subscriptions)}>Commencer</Button>
       </div>
     </div>
   );
