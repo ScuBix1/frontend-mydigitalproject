@@ -11,7 +11,6 @@ const Victory1 = () => {
   const { data: subscription } = useActiveSubscription(user?.id);
 
   const handleClick = (subscription?: { subscription_active: boolean }) => {
-    console.log(subscription);
     if (subscription && !subscription.subscription_active) {
       navigate('/tutor/check', {
         state: { redirectTo: `/student/subscription` },

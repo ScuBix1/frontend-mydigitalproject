@@ -1,6 +1,5 @@
-import ArrowCircle from '@/assets/icons/ArrowCircle';
+import Euro from '@/assets/icons/Euro';
 import InOut from '@/assets/icons/InOut';
-import Profile from '@/assets/icons/Profile';
 import Button from '@/components/Button/Button';
 import { useAuthContext } from '@/context/auth/useAuthContext';
 import { Link } from 'react-router-dom';
@@ -18,12 +17,12 @@ const TutorNavigation = (props: TutorNavigationProps) => {
       <ul className='flex flex-col gap-y-12'>
         <li>
           <Link to='/tutor/profile' className={'flex items-center gap-2'}>
-            <Profile className='w-[30px] h-[30px]' /> Mon profil
+            <i className='fa-solid fa-user text-[30px]'></i> Mon profil
           </Link>
         </li>
         <li>
           <Link to='/tutor/subscription' className={'flex items-center gap-2'}>
-            <ArrowCircle className='w-[30px] h-[30px]' /> Abonnement
+            <Euro className='w-[30px] h-[30px]' /> Abonnement
           </Link>
         </li>
         <li>

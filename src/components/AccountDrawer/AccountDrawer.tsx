@@ -28,7 +28,6 @@ interface AccountDrawerProps {
 const AccountDrawer = (props: AccountDrawerProps) => {
   const { className, isStudent, headerBackgroundColor, path } = props;
   const navigationLinkClassName = 'flex flex-col flex-1 justify-center mx-10';
-  console.log(path);
 
   return (
     <Drawer direction='right'>

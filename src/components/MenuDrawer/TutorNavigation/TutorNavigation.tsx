@@ -1,5 +1,6 @@
+import AddUser from '@/assets/icons/AddUser';
 import Grid from '@/assets/icons/Grid';
-import Profile from '@/assets/icons/Profile';
+import Human from '@/assets/icons/Human';
 import { Link } from 'react-router-dom';
 
 interface TutorNavigationProps {
@@ -19,12 +20,12 @@ const TutorNavigation = (props: TutorNavigationProps) => {
         </li>
         <li>
           <Link to='/tutor/add-student' className={'flex items-center gap-2'}>
-            <Profile className='w-[30px] h-[30px]' /> Ajouter un enfant
+            <AddUser className='w-[30px] h-[30px]' /> Ajouter un enfant
           </Link>
         </li>
         <li>
           <Link to='/tutor/all-students' className={'flex items-center gap-2'}>
-            <Profile className='w-[30px] h-[30px]' /> Liste enfants
+            <Human className='w-[30px] h-[30px]' /> Liste enfants
           </Link>
         </li>
       </ul>

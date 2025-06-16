@@ -1,4 +1,3 @@
-import Profile from '@/assets/icons/Profile';
 import { Link } from 'react-router-dom';
 
 interface StudentNavigationProps {
@@ -13,7 +12,7 @@ const StudentNavigation = (props: StudentNavigationProps) => {
       <ul className='flex flex-col gap-y-12'>
         <li>
           <Link to='/student/dashboard' className={'flex items-center gap-2'}>
-            <Profile className='w-[30px] h-[30px]' /> Voir profil
+            <i className='fa-solid fa-user text-[30px]'></i> Voir profil
           </Link>
         </li>
       </ul>

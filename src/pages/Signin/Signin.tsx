@@ -63,7 +63,7 @@ const Signin = () => {
         <img
           alt='illustration'
           src='/assets/images/illustration-signin.png'
-          className='w-[245px] lg:w-[650px] mt-5'
+          className='w-[245px] lg:w-[450px] mt-5'
         />
       </div>
     </div>

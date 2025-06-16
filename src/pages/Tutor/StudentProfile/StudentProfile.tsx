@@ -1,7 +1,6 @@
 import useStudent from '@/api/student/getStudent/useStudent';
 import { useStudentProgressions } from '@/api/student/progression/useStudentProgression';
 import { useUpdateStudent } from '@/api/student/updateStudent/useUpdateStudent';
-import Profile from '@/assets/icons/Profile';
 import EditableField from '@/components/EditableField/EditableField';
 import Panel from '@/components/Panel/Panel';
 import ProgressBar from '@/components/ProgressBar/ProgressBar';
@@ -96,25 +95,17 @@ const StudentProfile = () => {
               className='mx-auto'
             />
             <EditableField
-              icon={<Profile className='w-[30px] h-[30px]' />}
               label='Nom'
               value={firstname}
               onChange={setFirstname}
             />
             <EditableField
-              icon={<Profile className='w-[30px] h-[30px]' />}
               label='Prénom'
               value={lastname}
               onChange={setLastname}
             />
+            <EditableField label='Email' value={email} onChange={setEmail} />
             <EditableField
-              icon={<Profile className='w-[30px] h-[30px]' />}
-              label='Email'
-              value={email}
-              onChange={setEmail}
-            />
-            <EditableField
-              icon={<Profile className='w-[30px] h-[30px]' />}
               label='Mot de passe'
               value={password}
               onChange={setPassword}

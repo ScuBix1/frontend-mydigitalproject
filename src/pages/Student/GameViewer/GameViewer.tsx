@@ -9,7 +9,6 @@ const GameViewer = () => {
   const GameComponent = id && Games[id];
   const { user } = useAuthContext();
   const { data: subscription } = useActiveSubscription(user?.id);
-  console.log(id, subscription?.subscription_active);
 
   if (id && parseInt(id) > 1 && !subscription?.subscription_active) {
     return <Subscription />;
