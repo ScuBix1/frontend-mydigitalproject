@@ -1,5 +1,4 @@
 import { useAuthContext } from '@/context/auth/useAuthContext';
-import { UpdateTutorDto } from '@/types/tutor';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { updateTutor } from './api';
 

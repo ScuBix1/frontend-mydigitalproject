@@ -7,7 +7,6 @@ import EditableField from '@/components/EditableField/EditableField';
 import Panel from '@/components/Panel/Panel';
 import { useAuthContext } from '@/context/auth/useAuthContext';
 import ConnectedTemplate from '@/template/ConnectedTemplate';
-import { UpdateTutorDto } from '@/types/tutor';
 import { useEffect, useState } from 'react';
 
 const TutorProfile = () => {

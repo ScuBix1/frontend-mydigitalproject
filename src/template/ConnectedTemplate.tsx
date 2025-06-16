@@ -1,5 +1,4 @@
 import Header from '@/components/Header/Header';
-import { AvatarName } from '@/types/student';
 import clsx from 'clsx';
 import { PropsWithChildren } from 'react';
 

@@ -1,5 +1,4 @@
 import { httpRequest } from '@/api/client';
-import { Student } from '@/types/student';
 
 export const getStudent = async (studentId?: string, token?: string) => {
   const response = await httpRequest<Student>({

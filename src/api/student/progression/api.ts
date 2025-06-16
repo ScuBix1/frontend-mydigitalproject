@@ -1,5 +1,4 @@
 import { httpRequest } from '@/api/client';
-import { Session } from '@/types/session';
 
 const getStudentProgression = async (studentId?: string, token?: string) => {
   const response = await httpRequest<Session[]>({
