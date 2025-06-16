@@ -103,6 +103,10 @@
   font-family: "Walter Turncoat", cursive;
 }
 
+.text-poppins {
+  font-family: "Poppins", sans-serif;
+}
+
 .text-h1 {
   font-family: "Walter Turncoat", cursive;
   font-weight: 400;

@@ -10,7 +10,6 @@ import TimeSlider from '@/components/TimeSlider/TimeSlider';
 import { useStudentContext } from '@/context/student/useStudentContext';
 import computeProgression from '@/lib/computeProgression';
 import ConnectedTemplate from '@/template/ConnectedTemplate';
-import { AvatarName, UpdateStudentDto } from '@/types/student';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Button from '../../../components/Button/Button';
