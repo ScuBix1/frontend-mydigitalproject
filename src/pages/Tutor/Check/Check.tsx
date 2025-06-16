@@ -1,19 +1,21 @@
 import Button from '@/components/Button/Button';
 import { getRandomNumber } from '@/lib/getRandomNumber';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Input from '../../../components/Input/Input';
 
 const Check = () => {
+  const location = useLocation();
   const navigate = useNavigate();
   const [generatedNumber] = useState(() => getRandomNumber());
   const [number, setNumber] = useState<string>('');
+  const redirectTo = location.state?.redirectTo || '/tutor/dashboard';
 
   const handleCheck = () => {
     if (!number) return false;
 
     if (generatedNumber.value === parseInt(number)) {
-      navigate('/student/dashboard');
+      navigate(redirectTo);
     }
   };
 

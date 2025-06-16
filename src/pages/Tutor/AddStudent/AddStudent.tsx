@@ -1,7 +1,7 @@
 import { SignupStudentDto } from '@/api/student/signup/shema';
 import useSignupStudent from '@/api/student/signup/useSignupStudent';
 import StudentForm from '@/components/Student/StudentForm/StudentForm';
-import { useAuth } from '@/context/auth/AuthContext';
+import { useAuthContext } from '@/context/auth/useAuthContext';
 import ConnectedTemplate from '@/template/ConnectedTemplate';
 
 const AddStudent = () => {
@@ -11,7 +11,7 @@ const AddStudent = () => {
     error: studentError,
   } = useSignupStudent();
 
-  const { user } = useAuth();
+  const { user } = useAuthContext();
   const isTutor = user && user.role === 'tutor';
 
   const handleCreateStudent = (data: SignupStudentDto) => {

@@ -1,11 +1,11 @@
-import { useAuth } from '@/context/auth/AuthContext';
+import { useAuthContext } from '@/context/auth/useAuthContext';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { signinTutor } from './api';
 import { SigninTutorDto } from './schema';
 
 export const useSigninTutor = () => {
-  const { login } = useAuth();
+  const { login } = useAuthContext();
   const navigate = useNavigate();
 
   return useMutation({

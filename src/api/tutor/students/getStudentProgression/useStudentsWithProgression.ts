@@ -1,5 +1,5 @@
 import useStudents from '@/api/tutor/students/getStudents/useStudents';
-import { useAuth } from '@/context/auth/AuthContext';
+import { useAuthContext } from '@/context/auth/useAuthContext';
 import computeProgression from '@/lib/computeProgression';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
@@ -7,7 +7,7 @@ import getStudentProgression from '../../../student/progression/api';
 
 const useStudentsWithProgression = () => {
   const { data: students } = useStudents();
-  const { token } = useAuth();
+  const { token } = useAuthContext();
   const queryClient = useQueryClient();
 
   const [studentsProgression, setStudentsProgression] = useState<
@@ -53,7 +53,7 @@ const useStudentsWithProgression = () => {
     };
 
     fetchAllProgressions();
-  }, [students, token]);
+  }, [students, token, queryClient]);
 
   return {
     students: studentsProgression,

@@ -1,8 +1,8 @@
-import { useAuth } from '@/context/auth/AuthContext';
+import { useAuthContext } from '@/context/auth/useAuthContext';
 import { useQuery } from '@tanstack/react-query';
 import getStudentProgression from './api';
 export function useStudentProgressions(studentId?: string) {
-  const { user, token } = useAuth();
+  const { user, token } = useAuthContext();
 
   return useQuery({
     queryKey: ['student', studentId, 'progressions'],

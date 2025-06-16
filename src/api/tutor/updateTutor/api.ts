@@ -1,5 +1,4 @@
 import { httpRequest } from '@/api/client';
-import { UpdateTutorDto } from '@/types/tutor';
 
 export const updateTutor = async (
   data: UpdateTutorDto,

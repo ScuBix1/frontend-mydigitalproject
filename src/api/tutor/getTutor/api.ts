@@ -1,5 +1,4 @@
 import { httpRequest } from '@/api/client';
-import { Tutor } from '@/types/tutor';
 
 export const getTutor = async (token: string) => {
   const response = await httpRequest<Tutor>({

@@ -1,10 +1,14 @@
 import { useCreateSession } from '@/api/session/createSession/useCreateSession';
 import { useSessionExisting } from '@/api/session/getSessionExisting/useSessionExisting';
 import { useUpdateSession } from '@/api/session/updateSession/useUpdateSession';
+import useStudent from '@/api/student/getStudent/useStudent';
+import useActiveSubscription from '@/api/tutor/getSubscriptionStatus/useActiveSubscription';
 import Button from '@/components/Button/Button';
-import { useStudentContext } from '@/context/student/StudentContext';
+import { useAuthContext } from '@/context/auth/useAuthContext';
+import { useStudentContext } from '@/context/student/useStudentContext';
 import ConnectedTemplate from '@/template/ConnectedTemplate';
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ArrowRight from '../../../assets/icons/ArrowRight';
 
 interface Color {
@@ -48,12 +52,16 @@ const generateRound = (): { top: Color[]; bottom: Color[] } => {
 };
 
 const Game1 = () => {
+  const navigate = useNavigate();
+  const { user } = useAuthContext();
+  const { data: subscription } = useActiveSubscription(user?.id);
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(60);
   const [round, setRound] = useState(1);
   const [colors, setColors] = useState(generateRound);
   const [gameOver, setGameOver] = useState(false);
-  const { pathAvatar, studentId } = useStudentContext();
+  const { studentId } = useStudentContext();
+  const { data: student } = useStudent(studentId);
   const [sessionId, setSessionId] = useState<number | null>(null);
   const sessionCreationStartedRef = useRef(false);
 
@@ -85,7 +93,7 @@ const Game1 = () => {
     if (gameOver && studentId && sessionCreationStartedRef.current) {
       updateSession({ score, studentId: parseInt(studentId), gameId: 1 });
     }
-  }, [gameOver, sessionId, studentId, isSessionExisting]);
+  }, [gameOver, sessionId, studentId, isSessionExisting, score, updateSession]);
 
   useEffect(() => {
     if (timeLeft <= 0 || round > 5) {
@@ -115,6 +123,21 @@ const Game1 = () => {
     }
   };
 
+  const handleRedirect = (
+    score: number,
+    subscription?: { subscription_active: boolean }
+  ) => {
+    if (score === 100) {
+      navigate('/student/victory/1');
+    } else if (subscription && !subscription?.subscription_active) {
+      navigate('/tutor/check', {
+        state: { redirectTo: `/student/subscription` },
+      });
+    } else {
+      navigate('/student/dashboard');
+    }
+  };
+
   return (
     <>
       {!gameOver ? (
@@ -123,7 +146,7 @@ const Game1 = () => {
           headerBackgroundColor='var(--orange-secondary)'
           className='justify-center items-center'
           headerContent={<h1 className='text-h1 py-5'>Niveau 1</h1>}
-          path={`/assets/images/${pathAvatar}`}
+          path={`${student?.avatar}`}
         >
           <div className='flex flex-col justify-center items-center p-4 max-w-xl mx-auto text-center'>
             <div className='flex flex-col gap-4'>
@@ -144,7 +167,7 @@ const Game1 = () => {
               </h2>
             </div>
 
-            <div className='flex gap-4 items-center justify-center'>
+            <div className='flex gap-4 items-center justify-center h-[100px]'>
               <div className='flex gap-4 items-center justify-center'>
                 {colors.top.map((color, index) => (
                   <div
@@ -154,12 +177,12 @@ const Game1 = () => {
                   />
                 ))}
               </div>
-              <span className='text-walter text-[200px]'>?</span>
+              <span className='text-walter text-[100px] w-[90px]'>?</span>
             </div>
 
-            <div className='h-2 bg-black rounded-xl my-4 w-[110%]' />
+            <div className='h-2 bg-black rounded-xl my-2 w-[110%]' />
 
-            <div className='flex gap-4 mt-6 pr-[91px]'>
+            <div className='flex gap-x-4 mt-2 pr-[90px] h-[100px]'>
               {colors.bottom.map((color, index) => (
                 <button
                   key={`bottom-${index}`}
@@ -181,12 +204,11 @@ const Game1 = () => {
             alt='boules souriantes victorieuses'
             className='w-[280px] md:w-[415px] lg:w-[615px]'
           />
-          <Button className='px-[100px]' asChild>
-            <a
-              href={score === 100 ? '/student/victory/1' : '/student/dashboard'}
-            >
-              <ArrowRight className='w-[40px]' />
-            </a>
+          <Button
+            className='px-[100px]'
+            onClick={() => handleRedirect(score, subscription)}
+          >
+            <ArrowRight className='w-[40px]' />
           </Button>
         </div>
       )}

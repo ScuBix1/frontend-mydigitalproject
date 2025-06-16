@@ -1,5 +1,3 @@
-import { Session } from '@/types/session';
-
 const computeProgression = (
   sessionsTab: Session[] | undefined,
   totalGames = 4

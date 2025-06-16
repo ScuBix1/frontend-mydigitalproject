@@ -1,22 +1,27 @@
+import { useAllSubscriptions } from '@/api/subscription/allSubscriptions/useAllSubscriptions';
 import { useCheckoutSession } from '@/api/tutor/checkoutSession/useCheckoutSession';
 import SubscriptionCard from '@/components/SubscriptionCard/SubsciptionCard';
-import { useAuth } from '@/context/auth/AuthContext';
+import { useAuthContext } from '@/context/auth/useAuthContext';
 import ConnectedTemplate from '@/template/ConnectedTemplate';
 import Button from '../../../components/Button/Button';
 
 const Subscription = () => {
   const { mutate } = useCheckoutSession();
-  const { user } = useAuth();
-  console.log(user);
+  const { user } = useAuthContext();
+  const { data: subscriptions } = useAllSubscriptions();
 
-  const handleClick = () => {
+  const handleClick = (priceId: string) => {
     if (user && user.customer_id) {
       mutate({
-        price_id: 'price_1R5pEU05l0JrObEhBIpXNJB7',
+        price_id: priceId,
         customer_id: user.customer_id,
       });
     }
   };
+
+  if (!subscriptions) {
+    return null;
+  }
 
   return (
     <ConnectedTemplate
@@ -28,27 +33,40 @@ const Subscription = () => {
       isTutor
     >
       <div className='flex flex-wrap gap-5 justify-center'>
-        <SubscriptionCard
-          title='Abonnement'
-          subTitle='Mensuel'
-          price={9.99}
-          period='mois'
-          button={<Button onClick={handleClick}>Choisir</Button>}
-        />
-        <SubscriptionCard
-          title='Abonnement'
-          subTitle='Mensuel'
-          price={9.99}
-          period='mois'
-          button={<Button onClick={handleClick}>Choisir</Button>}
-        />
-        <SubscriptionCard
-          title='Abonnement'
-          subTitle='Mensuel'
-          price={9.99}
-          period='mois'
-          button={<Button onClick={handleClick}>Choisir</Button>}
-        />
+        {subscriptions.map((subscription, index) => {
+          const subTitle =
+            subscription.type === 'weekly'
+              ? 'Hebdomadaire'
+              : subscription.type === 'monthly'
+              ? 'Mensuel'
+              : subscription.type === 'annual'
+              ? 'Annuel'
+              : undefined;
+          const period =
+            subscription.type === 'weekly'
+              ? 'semaine'
+              : subscription.type === 'monthly'
+              ? 'mois'
+              : subscription.type === 'annual'
+              ? 'an'
+              : undefined;
+          return (
+            <SubscriptionCard
+              key={`abonnement-${index}`}
+              title={'Abonnement'}
+              subTitle={subTitle}
+              price={subscription.price}
+              period={period}
+              button={
+                <Button
+                  onClick={() => handleClick(subscription.stripe_price_id)}
+                >
+                  Choisir
+                </Button>
+              }
+            />
+          );
+        })}
       </div>
     </ConnectedTemplate>
   );

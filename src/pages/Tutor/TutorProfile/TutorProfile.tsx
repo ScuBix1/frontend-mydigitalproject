@@ -5,13 +5,12 @@ import Avatar from '@/components/Avatar/Avatar';
 import Button from '@/components/Button/Button';
 import EditableField from '@/components/EditableField/EditableField';
 import Panel from '@/components/Panel/Panel';
-import { useAuth } from '@/context/auth/AuthContext';
+import { useAuthContext } from '@/context/auth/useAuthContext';
 import ConnectedTemplate from '@/template/ConnectedTemplate';
-import { UpdateTutorDto } from '@/types/tutor';
 import { useEffect, useState } from 'react';
 
 const TutorProfile = () => {
-  const { user } = useAuth();
+  const { user } = useAuthContext();
   const { data: tutor } = useTutor();
   const { mutate: mutateTutor } = useUpdateTutor(user?.id);
 

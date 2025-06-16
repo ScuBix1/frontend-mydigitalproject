@@ -1,16 +1,14 @@
 import useStudent from '@/api/student/getStudent/useStudent';
 import { useStudentProgressions } from '@/api/student/progression/useStudentProgression';
 import { useUpdateStudent } from '@/api/student/updateStudent/useUpdateStudent';
-import Profile from '@/assets/icons/Profile';
 import EditableField from '@/components/EditableField/EditableField';
 import Panel from '@/components/Panel/Panel';
 import ProgressBar from '@/components/ProgressBar/ProgressBar';
 import AvatarPicker from '@/components/Student/StudentAvatarPicker/StudentAvatarPicker';
 import TimeSlider from '@/components/TimeSlider/TimeSlider';
-import { useStudentContext } from '@/context/student/StudentContext';
+import { useStudentContext } from '@/context/student/useStudentContext';
 import computeProgression from '@/lib/computeProgression';
 import ConnectedTemplate from '@/template/ConnectedTemplate';
-import { AvatarName, UpdateStudentDto } from '@/types/student';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Button from '../../../components/Button/Button';
@@ -63,7 +61,9 @@ const StudentProfile = () => {
     if (!student) return null;
     setStudentId(student.id.toString());
     setDurationMinutes(duration);
-    navigate('/tutor/check');
+    navigate('/tutor/check', {
+      state: { redirectTo: `/student/dashboard` },
+    });
   };
 
   return (
@@ -95,25 +95,17 @@ const StudentProfile = () => {
               className='mx-auto'
             />
             <EditableField
-              icon={<Profile className='w-[30px] h-[30px]' />}
               label='Nom'
               value={firstname}
               onChange={setFirstname}
             />
             <EditableField
-              icon={<Profile className='w-[30px] h-[30px]' />}
               label='Prénom'
               value={lastname}
               onChange={setLastname}
             />
+            <EditableField label='Email' value={email} onChange={setEmail} />
             <EditableField
-              icon={<Profile className='w-[30px] h-[30px]' />}
-              label='Email'
-              value={email}
-              onChange={setEmail}
-            />
-            <EditableField
-              icon={<Profile className='w-[30px] h-[30px]' />}
               label='Mot de passe'
               value={password}
               onChange={setPassword}

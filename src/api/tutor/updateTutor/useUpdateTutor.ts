@@ -1,10 +1,9 @@
-import { useAuth } from '@/context/auth/AuthContext';
-import { UpdateTutorDto } from '@/types/tutor';
+import { useAuthContext } from '@/context/auth/useAuthContext';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { updateTutor } from './api';
 
 export const useUpdateTutor = (tutorId?: number) => {
-  const { token } = useAuth();
+  const { token } = useAuthContext();
   const queryClient = useQueryClient();
 
   return useMutation({

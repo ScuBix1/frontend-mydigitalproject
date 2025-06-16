@@ -1,11 +1,11 @@
-import { useAuth } from '@/context/auth/AuthContext';
+import { useAuthContext } from '@/context/auth/useAuthContext';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import emailVerificationTutor from './api';
 import { EmailVerificationDto } from './schema';
 
 export const useEmailVerification = () => {
-  const { login } = useAuth();
+  const { login } = useAuthContext();
   const navigate = useNavigate();
 
   return useMutation({

@@ -1,10 +1,10 @@
-import { useAuth } from '@/context/auth/AuthContext';
+import { useAuthContext } from '@/context/auth/useAuthContext';
 import { useMutation } from '@tanstack/react-query';
 import getCheckoutLink from './api';
 import { CheckoutForm } from './schema';
 
 export const useCheckoutSession = () => {
-  const { token } = useAuth();
+  const { token } = useAuthContext();
 
   return useMutation({
     mutationFn: (data: CheckoutForm) => {

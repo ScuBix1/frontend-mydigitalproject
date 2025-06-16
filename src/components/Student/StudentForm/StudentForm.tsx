@@ -26,7 +26,6 @@ const StudentForm = (props: StudentFormProps) => {
     control,
     setValue,
     formState: { errors },
-    getValues,
   } = useForm<SignupStudentDto>({
     resolver: zodResolver(signupStudentSchema),
     defaultValues,
@@ -34,7 +33,6 @@ const StudentForm = (props: StudentFormProps) => {
 
   const [avatar, setAvatar] = useState(defaultValues?.avatar ?? 'wizard.png');
 
-  console.log(getValues('password'));
   useEffect(() => {
     setValue('avatar', avatar);
   }, [avatar, setValue]);

@@ -1,9 +1,9 @@
-import { useAuth } from '@/context/auth/AuthContext';
+import { useAuthContext } from '@/context/auth/useAuthContext';
 import { useQuery } from '@tanstack/react-query';
 import { getSessionExisting } from './api';
 
 export const useSessionExisting = (studentId?: string, gameId?: string) => {
-  const { token } = useAuth();
+  const { token } = useAuthContext();
 
   return useQuery({
     queryKey: ['session-existing', studentId, gameId],

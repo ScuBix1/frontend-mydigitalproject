@@ -6,15 +6,14 @@ import Panel from '@/components/Panel/Panel';
 import ProgressBar from '@/components/ProgressBar/ProgressBar';
 import StudentForm from '@/components/Student/StudentForm/StudentForm';
 import StudentProgressionCard from '@/components/Student/StudentProgressionCard/StudentProgressionCard';
-import { useAuth } from '@/context/auth/AuthContext';
+import { useAuthContext } from '@/context/auth/useAuthContext';
 import { getColorAvatar } from '@/lib/getColorAvatar';
 import sortBy from '@/lib/sort';
 import { Link } from 'react-router-dom';
 import ConnectedTemplate from '../../../template/ConnectedTemplate';
 
 const Dashboard = () => {
-  const { user, token } = useAuth();
-  console.log(token);
+  const { user } = useAuthContext();
   const isTutor = user && user.role === 'tutor';
 
   const {
@@ -24,7 +23,6 @@ const Dashboard = () => {
   } = useStudentsWithProgression();
 
   const students = sortBy(studentsProgression, 'progression', 'desc');
-  console.log(students);
 
   const {
     mutate: studentMutate,
@@ -106,7 +104,6 @@ const Dashboard = () => {
             <Panel title={<h2 className='w-full text-center'>Résultats</h2>}>
               <div className='flex flex-col items-center justify-center gap-8 md:gap-3 md:flex-row md:flex-nowrap'>
                 {students?.map((student, index) => {
-                  console.log(student);
                   if (index < 3) {
                     return (
                       <StudentProgressionCard

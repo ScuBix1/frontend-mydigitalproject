@@ -55,6 +55,7 @@
   --purple-primary: #993FDE;
   /* secondary */
   --orange-secondary: #FFD2A9;
+  --pink-secondary: #EA186F;
   /* tertiary */
   --gray-tertiary: #9F9196;
 
@@ -101,6 +102,10 @@
 } */
 .text-walter {
   font-family: "Walter Turncoat", cursive;
+}
+
+.text-poppins {
+  font-family: "Poppins", sans-serif;
 }
 
 .text-h1 {

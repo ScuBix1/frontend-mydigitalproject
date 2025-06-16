@@ -7,7 +7,6 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
-import { AvatarName } from '@/types/student';
 import clsx from 'clsx';
 import { useState } from 'react';
 import Button from '../../Button/Button';
@@ -43,7 +42,9 @@ const AvatarPicker = (props: AvatarPickerProps) => {
             alt='Avatar actuel'
             className='w-[80px] h-[80px] object-cover'
           />
-          <Pen className='absolute top-0 right-0 w-[30px] h-[30px]' />
+          <Button className='absolute top-0 right-0 p-1 w-[30px] h-[30px]'>
+            <Pen className='w-[18px] h-[18px]' />
+          </Button>
         </Button>
       </DialogTrigger>
       <DialogContent className='max-w-[400px]' aria-describedby={undefined}>

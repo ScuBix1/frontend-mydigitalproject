@@ -1,12 +1,12 @@
 import { queryKey } from '@/api/tutor/students/getStudents/useStudents';
-import { useAuth } from '@/context/auth/AuthContext';
+import { useAuthContext } from '@/context/auth/useAuthContext';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import signupStudent from './api';
 import { SignupStudentDto } from './shema';
 
 const useSignupStudent = () => {
-  const { user, token } = useAuth();
+  const { user, token } = useAuthContext();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 

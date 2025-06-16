@@ -1,7 +1,9 @@
 import ProgressBar from '@/components/ProgressBar/ProgressBar';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Loading = () => {
+  const navigate = useNavigate();
   const [imagesCompleted, setImagesCompleted] = useState(false);
   const [progress, setProgress] = useState(0);
 
@@ -31,6 +33,7 @@ const Loading = () => {
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
+          navigate('/signin');
           clearInterval(interval);
         }
         return prev + 1;

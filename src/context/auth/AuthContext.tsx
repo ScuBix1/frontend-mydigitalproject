@@ -1,25 +1,9 @@
 import { jwtDecode } from 'jwt-decode';
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 
-type AuthPayload = {
-  id: number;
-  username: string;
-  customer_id?: string;
-  role: 'tutor' | 'admin' | 'student';
-  iat: number;
-  exp: number;
-};
-
-type AuthContextType = {
-  token?: string;
-  user?: AuthPayload;
-  isAuthenticated: boolean;
-  isLoading: boolean;
-  login: (token: string) => void;
-  logout: () => void;
-};
-
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+export const AuthContext = createContext<AuthContextType | undefined>(
+  undefined
+);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [token, setToken] = useState<string | undefined>(undefined);
@@ -67,10 +51,4 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       {children}
     </AuthContext.Provider>
   );
-};
-
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) throw new Error('useAuth doit être utilisé avec AuthProvider');
-  return context;
 };

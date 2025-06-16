@@ -1,10 +1,10 @@
-import { useAuth } from '@/context/auth/AuthContext';
+import { useAuthContext } from '@/context/auth/useAuthContext';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { queryKey } from '../../getStudents/useStudents';
 import updateAvatar from './api';
 
 const useUpdateAvatar = () => {
-  const { token, user } = useAuth();
+  const { token, user } = useAuthContext();
   const queryClient = useQueryClient();
 
   return useMutation({

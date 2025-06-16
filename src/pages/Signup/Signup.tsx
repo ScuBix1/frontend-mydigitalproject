@@ -2,6 +2,7 @@ import DateInput from '@/components/DateInput/DateInput';
 import formatDateToISO from '@/lib/formatDateToISO';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 import { SignupTutorDto, signupSchema } from '../../api/tutor/signup/schema';
 import { useSignupTutor } from '../../api/tutor/signup/useSignupTutor';
 import Button from '../../components/Button/Button';
@@ -85,16 +86,21 @@ const Signup = () => {
                 {tutorError.message}
               </span>
             )}
-            <div className='basis-full'>
+            <div className='basis-full'></div>
+            <div className='flex justify-center items-center'>
               <Button
                 variant='primary'
-                className='mt-4 lg:mt-10 no-underline'
+                className='no-underline'
                 type='submit'
                 disabled={isPending}
               >
                 commencer
               </Button>
             </div>
+            <div className='basis-full'></div>
+            <Button variant='link' className='px-3 py-0' asChild>
+              <Link to='/signin'>Déjà un compte ?</Link>
+            </Button>
           </form>
         </div>
         <img

@@ -1,9 +1,9 @@
-import { useAuth } from '@/context/auth/AuthContext';
+import { useAuthContext } from '@/context/auth/useAuthContext';
 import { useQuery } from '@tanstack/react-query';
 import { getTutor } from './api';
 
 export const useTutor = () => {
-  const { token } = useAuth();
+  const { token } = useAuthContext();
 
   return useQuery({
     queryKey: ['/tutors/me'],

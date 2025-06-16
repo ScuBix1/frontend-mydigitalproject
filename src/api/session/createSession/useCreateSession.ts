@@ -1,10 +1,10 @@
-import { useAuth } from '@/context/auth/AuthContext';
+import { useAuthContext } from '@/context/auth/useAuthContext';
 import { useMutation } from '@tanstack/react-query';
 import { createSession } from './api';
 import { CreateSessionDto } from './schema';
 
 export const useCreateSession = () => {
-  const { token } = useAuth();
+  const { token } = useAuthContext();
 
   return useMutation({
     mutationFn: (data: CreateSessionDto) => {

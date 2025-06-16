@@ -32,9 +32,15 @@ const AccountDrawer = (props: AccountDrawerProps) => {
   return (
     <Drawer direction='right'>
       <DrawerTrigger asChild className={className}>
-        <Button variant='header'>
-          <i className='fa-solid fa-user '></i>
-        </Button>
+        {!isStudent ? (
+          <Button variant='header'>
+            <i className='fa-solid fa-user '></i>
+          </Button>
+        ) : (
+          <Button variant='header' className='p-0'>
+            <Avatar path={path} className='w-[70px] h-[70px]' />
+          </Button>
+        )}
       </DrawerTrigger>
       <DrawerContent className='z-[99999]'>
         <DrawerHeader className='p-0'>
