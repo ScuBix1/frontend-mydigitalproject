@@ -2,11 +2,13 @@ import { useCreateSession } from '@/api/session/createSession/useCreateSession';
 import { useSessionExisting } from '@/api/session/getSessionExisting/useSessionExisting';
 import { useUpdateSession } from '@/api/session/updateSession/useUpdateSession';
 import useStudent from '@/api/student/getStudent/useStudent';
+import useActiveSubscription from '@/api/tutor/getSubscriptionStatus/useActiveSubscription';
 import Button from '@/components/Button/Button';
+import { useAuthContext } from '@/context/auth/useAuthContext';
 import { useStudentContext } from '@/context/student/useStudentContext';
 import ConnectedTemplate from '@/template/ConnectedTemplate';
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ArrowRight from '../../../assets/icons/ArrowRight';
 
 interface Color {
@@ -50,6 +52,9 @@ const generateRound = (): { top: Color[]; bottom: Color[] } => {
 };
 
 const Game1 = () => {
+  const navigate = useNavigate();
+  const { user } = useAuthContext();
+  const { data: subscription } = useActiveSubscription(user?.id);
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(60);
   const [round, setRound] = useState(1);
@@ -115,6 +120,21 @@ const Game1 = () => {
       setColors(generateRound());
     } else {
       setGameOver(true);
+    }
+  };
+
+  const handleRedirect = (
+    score: number,
+    subscription?: { subscription_active: boolean }
+  ) => {
+    if (score === 100) {
+      navigate('/student/victory/1');
+    } else if (subscription && !subscription?.subscription_active) {
+      navigate('/tutor/check', {
+        state: { redirectTo: `/student/subscription` },
+      });
+    } else {
+      navigate('/student/dashboard');
     }
   };
 
@@ -184,12 +204,11 @@ const Game1 = () => {
             alt='boules souriantes victorieuses'
             className='w-[280px] md:w-[415px] lg:w-[615px]'
           />
-          <Button className='px-[100px]' asChild>
-            <Link
-              to={score === 100 ? '/student/victory/1' : '/student/dashboard'}
-            >
-              <ArrowRight className='w-[40px]' />
-            </Link>
+          <Button
+            className='px-[100px]'
+            onClick={() => handleRedirect(score, subscription)}
+          >
+            <ArrowRight className='w-[40px]' />
           </Button>
         </div>
       )}

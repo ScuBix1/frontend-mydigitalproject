@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import SubscriptionStudent from './components/Subscription/Subscription';
 import PrivateRoute from './layouts/PrivateRoute/PrivateRoute';
 import EmailVerification from './pages/EmailVerification/EmailVerification';
 import Loading from './pages/Loading/Loading';
@@ -30,6 +31,7 @@ function App() {
         <Route path='dashboard' element={<StudentDashboard />} />
         <Route path='game/:id' element={<GameViewer />} />
         <Route path='victory/:id' element={<Victory />} />
+        <Route path='subscription' element={<SubscriptionStudent />} />
       </Route>
 
       <Route path='/tutor' element={<PrivateRoute />}>
