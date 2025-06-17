@@ -1,6 +1,5 @@
 import { useTutor } from '@/api/tutor/getTutor/useTutor';
 import { useUpdateTutor } from '@/api/tutor/updateTutor/useUpdateTutor';
-import Profile from '@/assets/icons/Profile';
 import Avatar from '@/components/Avatar/Avatar';
 import Button from '@/components/Button/Button';
 import EditableField from '@/components/EditableField/EditableField';
@@ -61,25 +60,49 @@ const TutorProfile = () => {
         />
         <Panel className='max-w-fit'>
           <EditableField
-            icon={<Profile className='w-[30px] h-[30px]' />}
+            icon={
+              <img
+                src='/assets/images/human-head-icon.png'
+                alt='Icon tête humaine'
+                className='w-[30px] h-[30px]'
+              />
+            }
             label='Prénom'
             value={firstname}
             onChange={setFirstname}
           />
           <EditableField
-            icon={<Profile className='w-[30px] h-[30px]' />}
+            icon={
+              <img
+                src='/assets/images/human-head-icon.png'
+                alt='Icone tête humaine'
+                className='w-[30px] h-[30px]'
+              />
+            }
             label='Nom'
             value={lastname}
             onChange={setLastname}
           />
           <EditableField
-            icon={<Profile className='w-[30px] h-[30px]' />}
+            icon={
+              <img
+                src='/assets/images/email-icon.png'
+                alt='Icone enveloppe'
+                className='w-[30px] h-[30px]'
+              />
+            }
             label='Email'
             value={email}
             onChange={setEmail}
           />
           <EditableField
-            icon={<Profile className='w-[30px] h-[30px]' />}
+            icon={
+              <img
+                src='/assets/images/lock-icon.png'
+                alt='Icone cadenas'
+                className='w-[30px] h-[30px]'
+              />
+            }
             label='Mot de passe'
             value={password}
             onChange={setPassword}

@@ -42,9 +42,9 @@ const AvatarPicker = (props: AvatarPickerProps) => {
             alt='Avatar actuel'
             className='w-[80px] h-[80px] object-cover'
           />
-          <Button className='absolute top-0 right-0 p-1 w-[30px] h-[30px]'>
+          <span className='absolute top-0 right-0 p-1 w-[30px] h-[30px] bg-[var(--orange-primary)] rounded-full flex justify-center items-center'>
             <Pen className='w-[18px] h-[18px]' />
-          </Button>
+          </span>
         </Button>
       </DialogTrigger>
       <DialogContent className='max-w-[400px]' aria-describedby={undefined}>
