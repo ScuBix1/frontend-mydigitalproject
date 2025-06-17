@@ -1,17 +1,20 @@
-export function isIOS(): boolean {
-  const userAgent =
-    navigator.userAgent || navigator.vendor || (window as any).opera;
-
-  const nav = navigator as Navigator & {
-    userAgentData?: { platform?: string };
+interface NavigatorWithUAData extends Navigator {
+  userAgentData?: {
+    platform?: string;
   };
+}
 
-  if (nav.userAgentData?.platform === 'iOS') {
+export function isIOS(): boolean {
+  const navigatorWithUA = navigator as NavigatorWithUAData;
+
+  if (navigatorWithUA.userAgentData?.platform === 'iOS') {
     return true;
   }
 
+  const userAgent = navigator.userAgent || navigator.vendor;
+
   return (
     /iPad|iPhone|iPod/.test(userAgent) ||
-    (userAgent.includes('Mac') && 'ontouchend' in document)
+    (userAgent.includes('Mac') && 'ontouchend' in window)
   );
 }
