@@ -10,6 +10,7 @@ export const levels = [
     id: 2,
     image: '/assets/images/game2.png',
     label: 'Niveau 2',
+    path: '/student/game/2',
     color: 'var(--pink-primary)',
   },
   {

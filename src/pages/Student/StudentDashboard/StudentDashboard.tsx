@@ -5,18 +5,24 @@ import { levels } from '@/constants/levels';
 import { medals } from '@/constants/medals';
 import { useStudentContext } from '@/context/student/useStudentContext';
 import ConnectedTemplate from '@/template/ConnectedTemplate';
+import { useEffect, useState } from 'react';
 import Medal from '../../../components/Medal/Medal';
 
 const StudentDashboard = () => {
   const { studentId } = useStudentContext();
   const { data: student } = useStudent(studentId);
   const { data: progressions } = useStudentProgressions(studentId);
+  const [imageVisible, setImageVisible] = useState(false);
 
   const unlockedCount = progressions?.length ? progressions.length - 1 : 0;
   const nextIndexToPlay =
     progressions?.filter((p) => p.per_cent === 100).length ?? 0;
   const nextPlayableIndex =
     nextIndexToPlay !== -1 ? nextIndexToPlay : unlockedCount;
+
+  useEffect(() => {
+    setTimeout(() => setImageVisible(true), 100);
+  }, []);
 
   return (
     <ConnectedTemplate
@@ -70,6 +76,17 @@ const StudentDashboard = () => {
                 </Medal>
               );
             })}
+          </div>
+          <div className='relative w-[200px] h-[200px]'>
+            <img
+              className={`w-[200px] h-[200px] absolute bottom-0 transition-all duration-500 ease-out ${
+                imageVisible
+                  ? 'translate-y-0 opacity-100'
+                  : 'translate-y-1/2 opacity-0'
+              }`}
+              src='/assets/images/illustration.png'
+              alt='Illustration du magicien'
+            />
           </div>
         </div>
       </div>

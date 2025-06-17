@@ -58,6 +58,8 @@ interface StudentContextType {
   studentId?: string;
   pathAvatar?: AvatarName;
   durationMinutes: number;
+  sessionStartTime: number | null;
+  isSessionExpired: boolean;
   setStudentId: (id: string) => void;
   setDurationMinutes: (minutes: number) => void;
   setPathAvatar: (path: AvatarName) => void;
