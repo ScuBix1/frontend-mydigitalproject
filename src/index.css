@@ -58,6 +58,7 @@
   --pink-secondary: #EA186F;
   /* tertiary */
   --gray-tertiary: #9F9196;
+  --pink-tertiary: #FFCBE8;
 
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -173,7 +174,7 @@
 }
 
 .spin-with-pause {
-  animation: spinWithPause 2s infinite;
+  animation: spinWithPause 1s infinite;
   animation-timing-function: linear;
 }
 

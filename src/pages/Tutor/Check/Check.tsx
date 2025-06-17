@@ -1,6 +1,6 @@
 import Button from '@/components/Button/Button';
 import { getRandomNumber } from '@/lib/getRandomNumber';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Input from '../../../components/Input/Input';
 
@@ -10,6 +10,17 @@ const Check = () => {
   const [generatedNumber] = useState(() => getRandomNumber());
   const [number, setNumber] = useState<string>('');
   const redirectTo = location.state?.redirectTo || '/tutor/dashboard';
+  const isSessionExpired = localStorage.getItem('sessionExpired') === 'true';
+  const sessionExpiredMessage = localStorage.getItem('sessionExpiredMessage');
+
+  useEffect(() => {
+    if (isSessionExpired) {
+      localStorage.removeItem('sessionExpired');
+      localStorage.removeItem('sessionExpiredMessage');
+      localStorage.removeItem('studentId');
+      localStorage.removeItem('sessionStartTime');
+    }
+  }, [isSessionExpired]);
 
   const handleCheck = () => {
     if (!number) return false;
@@ -22,8 +33,13 @@ const Check = () => {
   return (
     <div className='flex flex-col items-center justify-center min-h-[100dvh] gap-y-8 text-center'>
       <h1 className='text-h1 uppercase'>
-        Attendez le professeur pour continuer !
+        {isSessionExpired
+          ? 'Session expirée'
+          : 'Attendez le professeur pour continuer !'}
       </h1>
+      {isSessionExpired && sessionExpiredMessage && (
+        <p className='text-walter'>{sessionExpiredMessage}</p>
+      )}
       <p className='uppercase text-walter'>Saisissez le nombre ci-dessous</p>
       <div className='flex flex-col justify-center items-center gap-5'>
         <Input
