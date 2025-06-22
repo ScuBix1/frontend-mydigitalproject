@@ -8,15 +8,18 @@ interface SubscriptionCardProps {
   price?: number;
   period?: string;
   button?: ReactNode;
+  isSubscribed?: boolean;
 }
 
 const SubscriptionCard = (props: SubscriptionCardProps) => {
-  const { className, title, subTitle, price, period, button } = props;
+  const { className, title, subTitle, price, period, button, isSubscribed } =
+    props;
 
   return (
     <div
       className={cn(
-        'flex flex-col max-w-[280px] text-[1.5rem] gap-y-10 border border-[var(--gray-primary)] b rounded-2xl px-7 py-8 shadow-[2px_10px_var(--gray-primary)]',
+        'flex flex-col max-w-[280px] h-[400px] text-[1.5rem] gap-y-10 border border-[var(--gray-primary)] rounded-2xl px-7 py-8 shadow-[2px_10px_var(--gray-primary)]',
+        { 'bg-[var(--grey-secondary)] h-[450px]': isSubscribed },
         className
       )}
     >

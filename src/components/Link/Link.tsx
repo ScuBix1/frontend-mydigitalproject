@@ -5,7 +5,9 @@ import { tv } from 'tailwind-variants';
 const linkVariant = tv({
   base: 'text-base',
   variants: {
-    variant: { primary: 'font-bold underline' },
+    variant: {
+      primary: 'font-bold underline hover:text-[var(--orange-primary)]',
+    },
   },
   defaultVariants: {
     variant: 'primary',

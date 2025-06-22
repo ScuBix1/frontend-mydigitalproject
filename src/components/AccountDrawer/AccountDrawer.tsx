@@ -1,3 +1,4 @@
+import Profile from '@/assets/icons/Profile';
 import Button from '@/components/Button/Button';
 import Avatar from '../Avatar/Avatar';
 import {
@@ -34,7 +35,7 @@ const AccountDrawer = (props: AccountDrawerProps) => {
       <DrawerTrigger asChild className={className}>
         {!isStudent ? (
           <Button variant='header'>
-            <i className='fa-solid fa-user '></i>
+            <Profile className='w-[30px] h-[30px]' />
           </Button>
         ) : (
           <Button variant='header' className='p-0'>
@@ -47,7 +48,7 @@ const AccountDrawer = (props: AccountDrawerProps) => {
           {!isStudent ? (
             <DrawerTitle className='bg-[var(--curious-blue-800)] rounded-b-[30%] w-full min-h-[70px] flex flex-col items-center justify-center'>
               <Button variant='header'>
-                <i className='fa-solid fa-user '></i>
+                <Profile className='w-[30px] h-[30px]' />
               </Button>
             </DrawerTitle>
           ) : (

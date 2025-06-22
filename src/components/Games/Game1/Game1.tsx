@@ -223,9 +223,13 @@ const Game1 = () => {
       {!gameOver ? (
         <ConnectedTemplate
           isStudent
-          headerBackgroundColor='var(--orange-secondary)'
+          headerBackgroundColor='var(--orange-primary)'
           className='justify-center items-center'
-          headerContent={<h1 className='text-h1 py-5'>Niveau 1</h1>}
+          headerContent={
+            <h1 className='text-h1 py-5 text-[var(--foreground-secondary)]'>
+              Niveau 1
+            </h1>
+          }
           path={`${student?.avatar}`}
         >
           <div className='flex flex-col justify-center items-center p-4 max-w-xl mx-auto text-center'>

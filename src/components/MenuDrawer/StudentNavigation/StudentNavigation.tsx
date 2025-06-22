@@ -20,8 +20,12 @@ const StudentNavigation = (props: StudentNavigationProps) => {
     <nav className={className}>
       <ul className='flex flex-col gap-y-12'>
         <li>
-          <Button onClick={handleLogout} variant='noStyle'>
-            <span className={'flex items-center gap-2'}>
+          <Button
+            className='hover:text-[var(--orange-primary)] hover:[&>svg>path]:fill-[var(--orange-primary)]'
+            onClick={handleLogout}
+            variant='noStyle'
+          >
+            <span className='flex items-center gap-2'>
               <Grid className='w-[30px] h-[30px]' /> Espace tuteur
             </span>
           </Button>

@@ -48,13 +48,13 @@ const Header = (props: HeaderProps) => {
       ) : isTutor ? (
         <Button variant='header' asChild>
           <Link to='/tutor/dashboard'>
-            <ArrowLeft className='w-[15px] h-[15px]' />
+            <ArrowLeft className='w-[30px] h-[30px]' />
           </Link>
         </Button>
       ) : (
         <Button variant='header' asChild>
           <Link to='/student/dashboard'>
-            <ArrowLeft className='w-[15px] h-[15px]' />
+            <ArrowLeft className='w-[30px] h-[30px]' />
           </Link>
         </Button>
       )}
