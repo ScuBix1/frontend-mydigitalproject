@@ -28,7 +28,7 @@ const StudentDashboard = () => {
     <ConnectedTemplate
       isDashboard
       isStudent
-      headerBackgroundColor='var(--blue-primary)'
+      headerBackgroundColor='var(--purple-primary)'
       path={student?.avatar}
       headerContent={
         <div className='text-center flex flex-col justify-center items-center'>

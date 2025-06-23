@@ -7,11 +7,14 @@ interface StudentNavigationProps {
 const StudentNavigation = (props: StudentNavigationProps) => {
   const { className } = props;
 
+  const linkClassName =
+    'flex items-center gap-2 hover:text-[var(--orange-primary)] hover:[&>svg>path]:fill-[var(--orange-primary)]';
+
   return (
     <nav className={className}>
       <ul className='flex flex-col gap-y-12'>
         <li>
-          <Link to='/student/dashboard' className={'flex items-center gap-2'}>
+          <Link to='/student/dashboard' className={linkClassName}>
             <i className='fa-solid fa-user text-[30px]'></i> Voir profil
           </Link>
         </li>

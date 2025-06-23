@@ -1,4 +1,4 @@
-import Grid from '@/assets/icons/Grid';
+import Home from '@/assets/icons/Home';
 import Button from '@/components/Button/Button';
 import {
   Drawer,
@@ -26,7 +26,7 @@ const MenuDrawer = (props: MenuDrawerProps) => {
     <Drawer direction='left'>
       <DrawerTrigger asChild className={className}>
         <Button variant='header'>
-          <Grid className='w-[20px] h-[20px]' />
+          <Home className='w-[30px] h-[30px]' />
         </Button>
       </DrawerTrigger>
       <DrawerContent className='z-[99999]'>
@@ -36,7 +36,7 @@ const MenuDrawer = (props: MenuDrawerProps) => {
             style={{ backgroundColor: headerBackgroundColor }}
           >
             <Button variant='header'>
-              <Grid className='w-[20px] h-[20px]' />
+              <Home className='w-[30px] h-[30px]' />
             </Button>
           </DrawerTitle>
           <DrawerDescription className='text-h2 text-center'>

@@ -46,34 +46,47 @@ const EmailVerification = (props: EmailVerificationProps) => {
   return (
     <div
       className={clsx(
-        'min-h-[100dvh] flex flex-col items-center justify-center gap-5',
+        'min-h-[100dvh] flex flex-col items-center justify-center',
         className
       )}
     >
-      <h1 className='text-h1'>Vérification de votre email</h1>
-      <p className=''>
-        Vous avez 15 minutes pour saisir le code à 6 chiffres reçu par email
-      </p>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className='flex flex-col items-center justify-center gap-5'
-      >
-        <Input
-          id='otp'
-          {...register('otp')}
-          placeholder='111222'
-          error={errors.otp?.message}
-        />
-        {error && (
-          <span className='h-2 text-red-500 basis-full'>{error.message}</span>
-        )}
-        <Button onClick={handleResendEmail} type='button' variant='link'>
-          Je n'ai pas reçu le code - renvoyer l'email
-        </Button>
-        <Button variant='primary' type='submit'>
-          Vérifier l'email
-        </Button>
-      </form>
+      <div className='flex flex-col gap-5 items-center w-full  md:flex-row md:items-end md:justify-around'>
+        <div className='flex flex-col justify-center gap-5 text-center'>
+          <h1 className='text-h1'>Vérification de votre email</h1>
+          <p className=''>
+            Vous avez 15 minutes pour saisir le code à 6 chiffres reçu par email
+          </p>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className='flex flex-col items-center justify-center gap-5'
+          >
+            <Input
+              id='otp'
+              {...register('otp')}
+              placeholder='111222'
+              error={errors.otp?.message}
+            />
+            {error && (
+              <span className='h-2 text-red-500 basis-full'>
+                {error.message}
+              </span>
+            )}
+            <Button onClick={handleResendEmail} type='button' variant='link'>
+              Je n'ai pas reçu le code - renvoyer l'email
+            </Button>
+            <Button variant='primary' type='submit'>
+              Vérifier l'email
+            </Button>
+          </form>
+        </div>
+        <div className='flex justify-center'>
+          <img
+            className='w-[300px] h-[300px] md:w-[260px] md:h-[260px] lg:w-[400px] lg:h-[400px]'
+            src='/assets/images/email-illustration.png'
+            alt='Email illustration'
+          />
+        </div>
+      </div>
     </div>
   );
 };

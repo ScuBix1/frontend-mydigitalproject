@@ -48,14 +48,15 @@
   --background-secondary-light: #F1F1F1;
   /* primary */
   --blue-primary: #459EE3;
-  --pink-primary: #FF66B2;
-  --orange-primary: #FFA559;
+  --pink-primary: #FA3A94;
+  --orange-primary: #ED4B09;
   --green-primary: #62C370;
   --gray-primary: #221E1F1A;
-  --purple-primary: #993FDE;
+  --purple-primary: #842EC2;
   /* secondary */
   --orange-secondary: #FFD2A9;
   --pink-secondary: #EA186F;
+  --grey-secondary: #E3EEFB;
   /* tertiary */
   --gray-tertiary: #9F9196;
   --pink-tertiary: #FFCBE8;

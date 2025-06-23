@@ -43,7 +43,12 @@ const Dashboard = () => {
   return (
     <ConnectedTemplate
       headerContent={
-        <div className='flex flex-col gap-2'>
+        <div className='flex flex-col gap-2 items-center justify-center text-center'>
+          <img
+            className='w-[50px]'
+            src='/assets/images/book.png'
+            alt='Livre illustration'
+          />
           <h1 className='text-h1 text-[var(--foreground-secondary)]'>
             {students && students.length > 0
               ? 'Tableau de bord'

@@ -78,7 +78,7 @@ const EditableField = (props: EditableFieldProps) => {
           onClick={handleEdit}
           aria-label='Éditer'
         >
-          <Pen className='w-[18px] h-[18px]' />
+          <Pen className='w-[18px] h-[18px] [&>path]:fill-[var(--foreground-secondary)]' />
         </Button>
       )}
       {error && (

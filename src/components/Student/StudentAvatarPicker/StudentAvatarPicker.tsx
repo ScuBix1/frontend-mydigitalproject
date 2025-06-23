@@ -43,7 +43,7 @@ const AvatarPicker = (props: AvatarPickerProps) => {
             className='w-[80px] h-[80px] object-cover'
           />
           <span className='absolute top-0 right-0 p-1 w-[30px] h-[30px] bg-[var(--orange-primary)] rounded-full flex justify-center items-center'>
-            <Pen className='w-[18px] h-[18px]' />
+            <Pen className='w-[18px] h-[18px] [&>path]:fill-[var(--foreground-secondary)]' />
           </span>
         </Button>
       </DialogTrigger>
