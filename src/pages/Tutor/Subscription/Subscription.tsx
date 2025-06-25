@@ -9,9 +9,8 @@ import Button from '../../../components/Button/Button';
 const Subscription = () => {
   const { mutate } = useCheckoutSession();
   const { user } = useAuthContext();
-  const { data: activeSubscription } = useActiveSubscription();
+  const { data: activeSubscription } = useActiveSubscription(user?.id);
   const { data: subscriptions } = useAllSubscriptions();
-
   const handleClick = (priceId: string) => {
     if (user && user.customer_id) {
       mutate({
@@ -20,6 +19,7 @@ const Subscription = () => {
       });
     }
   };
+  const hasSubscription = activeSubscription?.subscription_active;
 
   if (!subscriptions) {
     return null;
@@ -35,28 +35,35 @@ const Subscription = () => {
       isTutor
     >
       <div className='flex flex-wrap gap-5 justify-center items-center'>
+        <SubscriptionCard
+          title={'Gratuit'}
+          subTitle={'permanent'}
+          price={parseFloat('0.00')}
+          period={'Niveau 1'}
+          isSubscribed={!hasSubscription}
+          button={
+            <Button className='opacity-40 cursor-default' disabled>
+              Sélectionné
+            </Button>
+          }
+        />
         {subscriptions.map((subscription, index) => {
           const subTitle =
-            subscription.type === 'weekly'
-              ? 'Hebdomadaire'
-              : subscription.type === 'monthly'
+            subscription.type === 'monthly'
               ? 'Mensuel'
               : subscription.type === 'annual'
               ? 'Annuel'
               : undefined;
+
           const period =
-            subscription.type === 'weekly'
-              ? 'semaine'
-              : subscription.type === 'monthly'
+            subscription.type === 'monthly'
               ? 'mois'
               : subscription.type === 'annual'
               ? 'an'
               : undefined;
-          const isSubscribed =
-            subscription.type === 'monthly' &&
-            activeSubscription?.subscription_active
-              ? true
-              : subscription.type === 'weekly' && true;
+
+          const isSubscribed = activeSubscription?.type === subscription.type;
+
           return (
             <SubscriptionCard
               key={`abonnement-${index}`}
@@ -64,14 +71,18 @@ const Subscription = () => {
               subTitle={subTitle}
               price={subscription.price}
               period={period}
-              isSubscribed={isSubscribed}
+              isSubscribed={hasSubscription && isSubscribed}
               button={
                 <div>
-                  <Button
-                    onClick={() => handleClick(subscription.stripe_price_id)}
-                  >
-                    {isSubscribed ? 'Sélectionné' : 'Choisir'}
-                  </Button>
+                  {hasSubscription && isSubscribed ? (
+                    <Button>Sélectionné</Button>
+                  ) : (
+                    <Button
+                      onClick={() => handleClick(subscription.stripe_price_id)}
+                    >
+                      Choisir
+                    </Button>
+                  )}
                   {isSubscribed && (
                     <Button variant='link' className='text-base'>
                       Annuler l'abonnement
