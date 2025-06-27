@@ -16,6 +16,14 @@ const EditableField = (props: EditableFieldProps) => {
   const { icon, label, value, onChange, isPassword = false, error } = props;
   const [isEditing, setIsEditing] = useState(false);
   const [tempValue, setTempValue] = useState(value);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(
+    isPassword ? false : true
+  );
+
+  const handleIsPasswordVisible = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setIsPasswordVisible((prev) => !prev);
+  };
 
   const handleEdit = () => {
     setTempValue(value);
@@ -40,15 +48,30 @@ const EditableField = (props: EditableFieldProps) => {
           <span className='font-medium'>{label} :</span>
         </div>
 
-        <div>
+        <div className='relative'>
           {isEditing ? (
-            <Input
-              type={isPassword ? 'text' : 'text'}
-              value={tempValue}
-              onChange={(e) => setTempValue(e.target.value)}
-              autoFocus
-              className='h-[30px] w-[200px]'
-            />
+            <>
+              <Input
+                type={isPasswordVisible ? 'text' : 'password'}
+                value={tempValue}
+                onChange={(e) => setTempValue(e.target.value)}
+                autoFocus
+                className='h-[30px] w-[200px]'
+              />
+              {isPassword && (
+                <Button
+                  variant='noStyle'
+                  className='absolute right-1 top-1/2 -translate-y-1/2'
+                  onClick={handleIsPasswordVisible}
+                >
+                  {isPasswordVisible ? (
+                    <i className='fa-regular fa-eye-slash'></i>
+                  ) : (
+                    <i className='fa-regular fa-eye'></i>
+                  )}{' '}
+                </Button>
+              )}
+            </>
           ) : (
             <span>{isPassword ? '•'.repeat(Math.min(10, 10)) : value}</span>
           )}
