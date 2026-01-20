@@ -20,7 +20,6 @@ export const useSignupTutor = () => {
         login(data.signinResponse.access_token);
         navigate('/tutor/dashboard');
       }
-      console.log(data);
     },
   });
 };
