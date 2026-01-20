@@ -2,7 +2,9 @@ import { httpRequest } from '../../client';
 import { SignupTutorDto } from './schema';
 
 export const signupTutor = async (data: SignupTutorDto) => {
-  const res = await httpRequest<{ message: string }>({
+  const res = await httpRequest<
+    { message: string } | { email: string; password: string }
+  >({
     url: `${import.meta.env.VITE_API_URL}/tutors/sign-up`,
     method: 'POST',
     data: {
